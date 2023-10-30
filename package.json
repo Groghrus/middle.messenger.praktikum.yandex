@@ -1,0 +1,23 @@
+{
+  "name": "vite-project",
+  "version": "0.0.0",
+  "type": "module",
+  "engines": {
+    "node": "12.20.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "sass": "^1.69.4",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.5"
+  },
+  "dependencies": {
+    "path": "^0.12.7",
+    "vite-plugin-handlebars": "^1.6.0"
+  }
+}
