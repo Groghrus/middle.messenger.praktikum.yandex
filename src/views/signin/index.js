@@ -34,32 +34,41 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       inputs: [
         {
-          phType: 'Почта',
-          className: ''
+          inputLabel: 'Почта',
+          inputName: 'email',
+          inputType: 'email'
         },
         {
-          phType: 'Логин',
-          className: ''
+          inputLabel: 'Логин',
+          inputName: 'login',
+          inputType: 'text'
         },
         {
-          phType: 'Имя',
-          className: ''
+          inputLabel: 'Имя',
+          inputName: 'first_name',
+          inputType: 'text'
         },
         {
-          phType: 'Фамилия',
-          className: ''
+          inputLabel: 'Фамилия',
+          inputName: 'second_name',
+          inputType: 'text'
         },
         {
-          phType: 'Телефон',
-          className: ''
+          inputLabel: 'Телефон',
+          inputName: 'phone',
+          inputType: 'text'
+
         },
         {
-          phType: 'Пароль',
-          className: ''
+          inputLabel: 'Пароль',
+          inputName: 'password',
+          inputType: 'password'
+
         },
         {
-          phType: 'Пароль (ещё раз)',
-          className: ''
+          inputLabel: 'Пароль (ещё раз)',
+          inputName: 'password',
+          inputType: 'password'
         },
       ]
     })

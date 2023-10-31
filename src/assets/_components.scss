@@ -62,7 +62,10 @@
     color: $grey-color;
   }
 }
-
+.input-profile {
+  width: auto;
+  text-align: end;
+}
 .search {
   background: $light-grey-color;
   border-radius: 0.5rem;
@@ -99,6 +102,11 @@
   justify-content: space-between;
   border-bottom: 1px solid $gray-color;
   padding: 1rem 0;
+  div {
+    display: flex;
+    align-items: center;
+    height: 2.1rem;
+  }
 }
 .overlay {
   background: $overlay;
@@ -145,7 +153,5 @@
     .item:last-child {
       margin-top: 1.5rem;
     }
-  }
-  .mediafiles {
   }
 }

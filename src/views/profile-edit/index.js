@@ -8,6 +8,7 @@ import buttonExit from '../../partials/buttons/button.exit.tmpl.js'
 import linkProfile from '../../partials/profile/link.profile.tmpl.js'
 import avatarProfile from '../../partials/profile/avatar.profile.tmpl.js'
 import button from '../../partials/buttons/button.tmpl.js';
+import inputPf from '../../partials/inputs/input.profile.tmpl.js'
 
 Handlebars.registerPartial('textField', textField)
 Handlebars.registerPartial('buttonBack', buttonBack)
@@ -15,6 +16,7 @@ Handlebars.registerPartial('buttonExit', buttonExit)
 Handlebars.registerPartial('linkProfile', linkProfile)
 Handlebars.registerPartial('avatarProfile', avatarProfile)
 Handlebars.registerPartial('button', button)
+Handlebars.registerPartial('inputPf', inputPf)
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.querySelector('#profile-edit')
@@ -28,30 +30,49 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Сохранить',
       className: 'btn btn-second text-white fix-width',
       btnWrap: true,
+      editInputs: true,
       fields: [
         {
-          title: 'Почта',
-          field: 'pochta@yandex.ru',
+          inputLabel: 'Почта',
+          inputPlHolder: 'Почта',
+          inputName: 'email',
+          inputType: 'email',
+          inputValue: 'pochta@yandex.ru'
         },
         {
-          title: 'Логин',
-          field: 'ivanivanov',
+          inputLabel: 'Логин',
+          inputPlHolder: 'Логин',
+          inputName: 'login',
+          inputType: 'text',
+          inputValue: 'ivanivanov'
         },
         {
-          title: 'Имя',
-          field: 'Иван',
+          inputLabel: 'Имя',
+          inputPlHolder: 'Имя',
+          inputName: 'first_name',
+          inputType: 'text',
+          inputValue: 'Иван',
         },
         {
-          title: 'Фамилия',
-          field: 'Иванов',
+          inputLabel: 'Фамилия',
+          inputPlHolder: 'Фамилия',
+          inputName: 'second_name',
+          inputType: 'text',
+          inputValue: 'Иванов',
         },
         {
-          title: 'Имя в чате',
-          field: 'Иван',
+          inputLabel: 'Имя в чате',
+          inputPlHolder: 'Имя в чате',
+          inputName: 'display_name',
+          inputType: 'text',
+          inputValue: 'Иван',
         },
         {
-          title: 'Телефон',
-          field: '+7 (909) 967 30 30',
+          inputLabel: 'Телефон',
+          inputPlHolder: 'Телефон',
+          inputName: 'phone',
+          inputType: 'text',
+          inputValue: '+7 (999) 999 99 99',
         }
       ]
     })

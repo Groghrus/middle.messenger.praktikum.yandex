@@ -53,7 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
       modalsCRUD: [
         {
           modalTitle: 'Удалить пользователя',
-          phType: 'Логин',
+          inputLabel: 'Логин',
+          inputName: 'login',
+          inputType: 'text',
           colorText: 'text-dark',
           btnWrap: true,
           title: 'Удалить',
@@ -62,7 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
           modalTitle: 'Добавить пользователя',
-          phType: 'Логин',
+          inputLabel: 'Логин',
+          inputName: 'login',
+          inputType: 'text',
           colorText: 'text-dark',
           btnWrap: true,
           title: 'Добавить',

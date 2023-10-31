@@ -8,6 +8,7 @@ import buttonExit from '../../partials/buttons/button.exit.tmpl.js'
 import linkProfile from '../../partials/profile/link.profile.tmpl.js'
 import avatarProfile from '../../partials/profile/avatar.profile.tmpl.js'
 import button from '../../partials/buttons/button.tmpl.js';
+import inputPf from '../../partials/inputs/input.profile.tmpl.js'
 
 Handlebars.registerPartial('textField', textField)
 Handlebars.registerPartial('buttonBack', buttonBack)
@@ -15,6 +16,7 @@ Handlebars.registerPartial('buttonExit', buttonExit)
 Handlebars.registerPartial('linkProfile', linkProfile)
 Handlebars.registerPartial('avatarProfile', avatarProfile)
 Handlebars.registerPartial('button', button)
+Handlebars.registerPartial('inputPf', inputPf)
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.querySelector('#profile')
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     template({
       text: 'Иван',
       exit: true,
+      textFields: true,
       fields: [
         {
           title: 'Почта',
