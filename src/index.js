@@ -34,10 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       inputs: [
         {
-          phType: 'Логин'
+          inputLabel: 'Логин',
+          inputName: 'login',
+          inputType: 'text'
         },
         {
-          phType: 'Пароль'
+          inputLabel: 'Пароль',
+          inputName: 'password',
+          inputType: 'password'
         },
     ]
     })

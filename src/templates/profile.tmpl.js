@@ -6,12 +6,19 @@ export default `
         {{>buttonBack }}
       </div>
       <div class="d-flex align-c justify-c">
-        <div class="profile-page__fields">
+        <form class="profile-page__fields">
           {{>avatarProfile }}
           <div class="top">
-            {{#each fields}}
-              {{>textField }}
-            {{/each}}
+            {{#if editInputs}}
+              {{#each fields}}                
+                {{> inputPf }}
+              {{/each}}
+            {{/if}}
+            {{#if textFields}}
+              {{#each fields}}
+                {{>textField }}                
+              {{/each}}
+            {{/if}}
           </div>
           <div class="bottom">
              {{#each links}}
@@ -24,7 +31,7 @@ export default `
               {{>buttonExit }}
              {{/if}}
           </div>            
-        </div>           
+        </form>           
       </div>  
     </div>                
   </div>    
