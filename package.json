@@ -14,7 +14,8 @@
   "devDependencies": {
     "sass": "^1.69.4",
     "typescript": "^5.2.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
     "path": "^0.12.7",

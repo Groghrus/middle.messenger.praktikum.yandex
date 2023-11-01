@@ -1,9 +1,13 @@
 import './assets/main.scss'
 import Handlebars from 'handlebars'
+// @ts-ignore
 import auth from './templates/auth.tmpl.js'
 
+// @ts-ignore
 import button from './partials/buttons/button.tmpl.js'
+// @ts-ignore
 import input from './partials/inputs/input.tmpl.js'
+// @ts-ignore
 import link from './partials/buttons/link.tmpl.js'
 
 Handlebars.registerPartial('button', button)
@@ -17,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const result = [
     template({
       text: 'Вход',
-
       buttons: [
         {
           aWrap: true,
@@ -47,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   ]
 
+  // @ts-ignore
   root.innerHTML = result
 })
 
