@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@900&display=swap');
+:root {
+  font-size: 10px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 500;
+  color: $dark-color;
+  background-color: $white-color;
+}
+html {
+  scroll-behavior: smooth;
+  &::-webkit-scrollbar {
+    display: none; /* Chrome */
+  }
+  -ms-overflow-style: none;  /* IE и Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+.container {
+  max-width: 1920px;
+}
+a {
+  text-decoration: none;
+  text-transform: none;
+  width: 100%;
+}
+.w-auto {
+  width: auto;
+}
+.temp-link {
+  width: 7rem;
+  text-align: center;
+  border: 2px solid $blue-color;
+  background: $light-blue-color;
+  border-radius: 6px;
+}
+button {
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+input {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  width: 100%;
+  outline: none;
+  border:none;
+  background-image:none;
+  background-color:transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.error-pg {
+  div:nth-child(2) {
+    margin-top: 4rem;
+    margin-bottom: 2rem
+  }
+  div:last-child {margin-top: 7rem}
+}

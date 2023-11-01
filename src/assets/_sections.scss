@@ -1,0 +1,170 @@
+.form {
+  width: 34rem;
+  padding: 3rem;
+  border-radius: 1.2rem;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
+  &-wrapper {
+    height: 100%;
+    &-bottom {
+      margin-top: 4rem;
+    }
+  }
+  &-title {
+    width: 100%;
+    text-align: center;
+    line-height: 2rem;
+    margin-bottom: 4rem;
+  }
+}
+.main {
+  display: grid;
+  grid-template-columns: 33rem 1fr;
+  width: 100%;
+  min-height: 100vh;
+  .chat {
+    background: $dark-white-color;
+    padding: 0 1rem;
+    border-right: 1px solid $gray-color;
+    .top {
+      border-bottom: 1px solid $gray-color;
+      padding-bottom: 1.5rem;
+    }
+  }
+  .space {
+    background: $white-color;
+    padding: 0 2rem;
+    .plug {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    .dialog {
+      height: 100%;
+      display: grid;
+      grid-template-rows: 5.4rem 1fr 5.4rem;
+      &-header {
+        padding: 1rem 0;
+        border-bottom: 1px solid $gray-color;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &__info {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          div:last-child {
+            margin-left: 1rem;
+          }
+        }
+      }
+      &-main {
+        padding: 4rem 0 1.5rem 0;
+        &__messages {
+          height: 100%;
+          padding: 3rem 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          .msg-row {
+            display: flex;
+            align-items: center;
+            padding-bottom: 1rem;
+            &__contact{justify-content: flex-start;}
+            &__user{justify-content: flex-end;}
+          }
+          .message {
+            position: relative;
+            padding: 1.7rem;
+            max-width: 40rem;
+            min-width: 10rem;
+            &-contact {
+              background: $dark-white-color;
+              border-radius: 0 1rem 1rem 1rem;
+            }
+            &-user {
+              background: $light-blue-color;
+              border-radius: 1rem 1rem 0 1rem;
+            }
+            .msg-time {
+              position: absolute;
+              bottom: 0.6rem;
+              right: 0.6rem;
+            }
+          }
+        }
+      }
+      &-footer {
+        padding: 1rem 0;
+        border-top: 1px solid $gray-color;
+        display: grid;
+        grid-template-columns: 4.2rem 1fr 4.2rem;
+        align-items: center;
+      }
+    }
+  }
+}
+.profile-page {
+  display: grid;
+  grid-template-columns: 6.4rem 1fr;
+  width: 100%;
+  min-height: 100vh;
+  &__back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid $gray-color;
+    background: $dark-white-color;
+  }
+  &__fields {
+    width: 50rem;
+    .top {
+      margin-top: 6rem;
+    }
+    .bottom {
+      margin-top: 4.5rem;
+    }
+  }
+  .profile-link {
+    padding: 1rem 0;
+    border-bottom: 1px solid $gray-color;
+    &.exit {
+      border-bottom: 0;
+    }
+  }
+  .profile-avatar {
+    position: relative;
+    &__img {
+      position: relative;
+      width: auto;
+      &:hover {
+        .photo-text {
+          opacity: 1;
+        }
+      }
+      .photo-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 13rem;
+        height: 13rem;
+        border-radius: 50%;
+        transition: 0.2s;
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        span {
+          text-align: center;
+          width: 7rem;
+        }
+      }
+    }
+
+    .text-dark {
+      margin-top: 2rem;
+    }
+  }
+}
