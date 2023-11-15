@@ -1,20 +1,20 @@
-export class EventBus {
+export default class EventBus {
     private readonly listeners: {};
     constructor() {
         this.listeners = {}
     }
 
-    public on(event: string, callback: () => void) {
-        // @ts-ignore
+    public on(event: string, callback: any) {
+         // @ts-ignore
         if(!this.listeners[event]) {
-            // @ts-ignore
+             // @ts-ignore
             this.listeners[event] = []
-        }
+         }
         // @ts-ignore
         this.listeners[event].push(callback)
     }
 
-    public off(event: string, callback: () => void) {
+    public off(event: string, callback: any) {
         // @ts-ignore
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
@@ -26,7 +26,7 @@ export class EventBus {
         );
     }
 
-    public emit(event: string, ...args: undefined[]) {
+    public emit(event, ...args) {
         // @ts-ignore
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);

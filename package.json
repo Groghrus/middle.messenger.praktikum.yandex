@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "path": "^0.12.7",
-    "vite-plugin-handlebars": "^1.6.0"
+    "vite-plugin-handlebars": "^1.6.0",
+    "@types/uuid": "^9.0.7",
+    "uuid": "^9.0.1"
   }
 }

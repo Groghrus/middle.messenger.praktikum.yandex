@@ -1,10 +1,10 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
-import vitePluginHandlebarsPrecompile from './vite-plugin-hb-precompile'
+// import vitePluginHandlebarsPrecompile from './vite-plugin-hb-precompile'
 
 export default defineConfig({
     root: resolve(__dirname, 'src'),
-    plugins: [vitePluginHandlebarsPrecompile()],
+    // plugins: [vitePluginHandlebarsPrecompile()],
     build: {
       outDir: resolve(__dirname, 'dist'),
       // rollupOptions: {
