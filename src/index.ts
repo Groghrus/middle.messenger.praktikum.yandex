@@ -1,8 +1,9 @@
-import './assets/main.scss'
+import './assets/main.scss';
 import AuthPage from './pages/auth';
 import SigninPage from './pages/signin';
 import MainLayout from './layout/main';
 import ErrorPage from './pages/error';
+import ChatPage from './pages/chat';
 
 
 const authPage = new MainLayout(
@@ -33,24 +34,31 @@ const error404 = new ErrorPage(
 )
 const error500 = new ErrorPage(
     'main', {
-      title: '404',
+      title: '500',
       attr: {
         class: 'layout'
       }
     },
 )
 
+const chatPage = new ChatPage(
+    'main',
+    {}
+)
+
 const ROUTES = {
   auth: '/',
   signin: '/signin',
   err404: '/err404',
-  err500: '/err500'
+  err500: '/err500',
+  chat: '/chat'
 }
 
-const changeRoute = () => {
+
+const changeRoute = (): any => {
   let path = window.location.pathname
   if (path === ROUTES.auth) {
-    return authPage
+    return  authPage
   }
   if (path === ROUTES.signin) {
     return signinPage
@@ -61,13 +69,14 @@ const changeRoute = () => {
   if (path === ROUTES.err500) {
     return error500
   }
+  if (path === ROUTES.chat) {
+    return chatPage
+  }
 }
 
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  let path = window.location.pathname
-  console.log('path', path)
   const root = document.getElementById('app');
 
   if (root) {

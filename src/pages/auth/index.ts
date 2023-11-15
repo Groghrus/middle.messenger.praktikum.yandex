@@ -1,7 +1,8 @@
 import template from './auth.tmpl.ts';
 import Block from '../../lib/Block.ts';
 import Button from '../../components/button';
-import Input from '../../components/input'
+import Input from '../../components/input';
+import {validation} from '../../utils/validation.ts';
 
 export default class AuthPage extends Block {
     render() {
@@ -18,6 +19,13 @@ export default class AuthPage extends Block {
                     className: 'btn btn-second text-white',
                     attr: {
                         class: 'btn-wrapper'
+                    },
+                    events: {
+                        click: (e: any) => {
+                            window.location.pathname = '/chat'
+                            e.preventDefault()
+                            e.stopPropagation()
+                        }
                     }
                 }
                 ),
@@ -33,7 +41,6 @@ export default class AuthPage extends Block {
                             window.location.pathname = '/signin'
                             e.preventDefault()
                             e.stopPropagation()
-                            console.log('Нет аккаунта? click')
                         }
                     }
                 })
@@ -44,7 +51,20 @@ export default class AuthPage extends Block {
                     inputName: 'login',
                     inputType: 'text',
                     attr: {
-                        class: 'input-wrapper input-text text-10-400 text-grey',
+                        class: 'input-wrapper',
+                    },
+                    events: {
+                        input: (e: any) => {
+                            const input = e.target
+                            if (!input.value) {return null}
+                            const newValue = validation(input.name, input.value)
+                            if (!newValue) {
+                                input.classList.add('error-text')
+                                return null
+                            }
+                            input.classList.remove('error-text')
+                            input.value = newValue
+                        }
                     }
                 }),
                 new Input('div', {
@@ -53,7 +73,8 @@ export default class AuthPage extends Block {
                     inputType: 'password',
                     attr: {
                         class: 'input-wrapper input-text text-10-400 text-grey'
-                    }
+                    },
+                    events: {}
                 })
             ],
             attr: {

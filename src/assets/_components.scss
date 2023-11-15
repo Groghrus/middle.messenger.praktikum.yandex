@@ -1,3 +1,4 @@
+
 .btn-wrapper {
   width: 100%;
   position: relative;
@@ -39,7 +40,9 @@
       padding: 1rem 2rem;
     }
   }
-
+  .error-text {
+    color: $red-color;
+  }
   .input:not(:placeholder-shown) ~ .cut {
     transform: translateY(8px);
   }

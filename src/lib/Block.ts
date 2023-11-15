@@ -1,6 +1,7 @@
-import {v4 as makeUUID } from 'uuid'
-import Handlebars from 'handlebars'
-import EventBus from './EventBus.ts'
+import {v4 as makeUUID} from 'uuid';
+import Handlebars from 'handlebars';
+import EventBus from './EventBus.ts';
+
 export default class Block {
     static EVENTS = {
         INIT: "init",
@@ -23,7 +24,6 @@ export default class Block {
 
         this._eventBus = new EventBus()
         this._id = makeUUID()
-        // this._children = children
         this._children = this.makePropsProxy(children)
         this._lists = this.makePropsProxy(lists)
         this._props = this.makePropsProxy({...props, __id: this._id })
@@ -43,12 +43,8 @@ export default class Block {
         this._element = this.createDocumentElement(this._meta?.tagName)
         this._eventBus.emit(Block.EVENTS.FLOW_RENDER)
     }
-    createDocumentElement(tagName: string) {
-       const element = document.createElement(tagName)
-        // if (this._props.settings?.withInternalID){
-        //     element.setAttribute('data-id', this._id)
-        // }
-        return element
+    createDocumentElement(tagName: string): HTMLElement {
+        return document.createElement(tagName)
     }
 
     _render() {

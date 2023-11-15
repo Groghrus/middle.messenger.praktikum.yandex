@@ -1,8 +1,8 @@
-import template from './input.tmpl.ts'
+import template from './linkProfile.tmpl.ts'
 import Block from '../../lib/Block.ts';
 
 
-export default class Input extends Block {
+export default class LinkProfile extends Block {
     render() {
         return this.compile(template, this._props)
     }
