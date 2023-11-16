@@ -3,5 +3,4 @@ const template = `
     {{{ content }}}  
   </div>  
 `
-
 export default template

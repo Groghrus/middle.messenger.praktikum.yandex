@@ -33,11 +33,15 @@
     padding: 0.7rem 0;
     width: 100%;
     margin-bottom: 1.6rem;
-    &-msg {
+  }
+  &.input-msg {
+    .input {
       background: $light-grey-color;
+      border-bottom: transparent;
       border-radius: 3rem;
       height: 3.2rem;
       padding: 1rem 2rem;
+      margin-bottom: 0;
     }
   }
   .error-text {
@@ -163,3 +167,47 @@
     }
   }
 }
+.msg-row {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+  &__contact{
+    justify-content: flex-start;
+    .message {
+      background: $dark-white-color;
+      border-radius: 0 1rem 1rem 1rem;
+    }
+    .time {
+      color: $blue-color;
+    }
+  }
+  &__user{
+    justify-content: flex-end;
+    .message {
+      background: $light-blue-color;
+      border-radius: 1rem 1rem 0 1rem;
+    }
+    .time {
+      color: $grey-color;
+    }
+  }
+  .message {
+    position: relative;
+    padding: 1.7rem;
+    max-width: 40rem;
+    min-width: 10rem;
+  }
+  .time {
+    position: absolute;
+    bottom: 0.6rem;
+    right: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+  .text {
+    color: $dark-color;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+}
+

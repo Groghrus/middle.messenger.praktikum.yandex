@@ -41,10 +41,7 @@ const error500 = new ErrorPage(
     },
 )
 
-const chatPage = new ChatPage(
-    'main',
-    {}
-)
+const chatPage = new ChatPage()
 
 const ROUTES = {
   auth: '/',
