@@ -5,19 +5,30 @@ export default defineConfig({
     root: resolve(__dirname, 'src'),
     build: {
       outDir: resolve(__dirname, 'dist'),
-      // rollupOptions: {
-      //   input: {
-      //     index: resolve(__dirname, 'src/index.html'),
-      //     home: resolve(__dirname, 'src/views/home/index.html'),
-      //     modals: resolve(__dirname, 'src/views/modals/index.html'),
-      //     profile: resolve(__dirname, 'src/views/profile/index.html'),
-      //     profileEdit: resolve(__dirname, 'src/views/profile-edit/index.html'),
-      //     profilePwd: resolve(__dirname, 'src/views/profile-pwd/index.html'),
-      //     signin: resolve(__dirname, 'src/views/signin/index.html'),
-      //     e404: resolve(__dirname, 'src/views/404.html'),
-      //     e500: resolve(__dirname, 'src/views/500.html')
-      //   }
-      // }
+      rollupOptions: {
+        input: {
+            auth: resolve(__dirname, 'src/index.html'),
+            signin: resolve(__dirname, 'src/index.html'),
+            err404: resolve(__dirname, 'src/index.html'),
+            err500: resolve(__dirname, 'src/index.html'),
+            chat: resolve(__dirname, 'src/index.html'),
+            profile: resolve(__dirname, 'src/index.html'),
+            profileEdit: resolve(__dirname, 'src/index.html'),
+            profilePwdEdit: resolve(__dirname, 'src/index.html'),
+            modals: resolve(__dirname, 'src/index.html')
+        }
+      }
+    },
+    resolve: {
+        alias: {
+            'assets': resolve(__dirname, 'src/assets'),
+            'components': resolve(__dirname, 'src/components'),
+            'layout': resolve(__dirname, 'src/layout'),
+            'lib': resolve(__dirname, 'src/lib'),
+            'pages': resolve(__dirname, 'src/pages'),
+            'typings': resolve(__dirname, 'src/typings'),
+            'utils': resolve(__dirname, 'src/utils')
+        }
     },
     server: {
       port: 3000,
