@@ -4,7 +4,8 @@
   "plugins": ["@typescript-eslint"],
   "import/no-extraneous-dependencies": [
     "error", {
-      "optionalDependencies": " false"
+      "optionalDependencies": " false",
+      "devDependencies": "true"
     }
   ],
   "rules": {
