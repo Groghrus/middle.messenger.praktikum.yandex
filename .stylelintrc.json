@@ -1,4 +1,5 @@
 {
+  "customSyntax": "",
   "rules": {
     "color-hex-case": "lower"
   },
