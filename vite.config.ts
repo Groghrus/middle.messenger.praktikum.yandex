@@ -5,19 +5,20 @@ export default defineConfig({
     root: resolve(__dirname, 'src'),
     build: {
       outDir: resolve(__dirname, 'dist'),
-      rollupOptions: {
-        input: {
-            auth: resolve(__dirname, 'src/index.html'),
-            signin: resolve(__dirname, 'src/index.html'),
-            err404: resolve(__dirname, 'src/index.html'),
-            err500: resolve(__dirname, 'src/index.html'),
-            chat: resolve(__dirname, 'src/index.html'),
-            profile: resolve(__dirname, 'src/index.html'),
-            profileEdit: resolve(__dirname, 'src/index.html'),
-            profilePwdEdit: resolve(__dirname, 'src/index.html'),
-            modals: resolve(__dirname, 'src/index.html')
-        }
-      }
+      emptyOutDir: true
+      // rollupOptions: {
+      //   input: {
+      //       auth: resolve(__dirname, 'src/index.html'),
+      //       signin: resolve(__dirname, 'src/index.html'),
+      //       err404: resolve(__dirname, 'src/index.html'),
+      //       err500: resolve(__dirname, 'src/index.html'),
+      //       chat: resolve(__dirname, 'src/index.html'),
+      //       profile: resolve(__dirname, 'src/index.html'),
+      //       profileEdit: resolve(__dirname, 'src/index.html'),
+      //       profilePwdEdit: resolve(__dirname, 'src/index.html'),
+      //       modals: resolve(__dirname, 'src/index.html')
+      //   }
+      // }
     },
     resolve: {
         alias: {
@@ -32,6 +33,5 @@ export default defineConfig({
     },
     server: {
       port: 3000,
-    },
-    appType: 'spa'
+    }
 })
