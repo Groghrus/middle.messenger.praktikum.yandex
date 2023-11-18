@@ -1,10 +1,8 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
-// import vitePluginHandlebarsPrecompile from './vite-plugin-hb-precompile'
 
 export default defineConfig({
     root: resolve(__dirname, 'src'),
-    // plugins: [vitePluginHandlebarsPrecompile()],
     build: {
       outDir: resolve(__dirname, 'dist'),
       // rollupOptions: {
@@ -23,5 +21,6 @@ export default defineConfig({
     },
     server: {
       port: 3000,
-    }
+    },
+    appType: 'spa'
 })

@@ -104,6 +104,9 @@
     border-bottom: 1px solid $gray-color;
     &.exit {
       border-bottom: 0;
+      button {
+        color: $red-color;
+      }
     }
   }
   .profile-avatar {

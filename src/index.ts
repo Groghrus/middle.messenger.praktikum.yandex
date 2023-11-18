@@ -4,6 +4,12 @@ import SigninPage from './pages/signin';
 import MainLayout from './layout/main';
 import ErrorPage from './pages/error';
 import ChatPage from './pages/chat';
+import ProfilePage from './pages/profile';
+import ProfileLayout from './layout/profile';
+import ButtonBack from './components/buttonBack';
+import ProfileEdit from './pages/profile-edit';
+import ProfilePwdEdit from './pages/password-edit';
+import ModalsPage from './pages/modals';
 
 
 const authPage = new MainLayout(
@@ -43,12 +49,45 @@ const error500 = new ErrorPage(
 
 const chatPage = new ChatPage()
 
+const btnBack = new ButtonBack(
+    'div',{
+        attr: {
+            class: 'profile-page__back'
+        }
+    })
+
+const profilePage = new ProfileLayout(
+    'main', {
+        buttonBack: btnBack,
+        content: new ProfilePage()
+    }
+)
+const profileEdit = new ProfileLayout(
+    'main',{
+        buttonBack: btnBack,
+        content: new ProfileEdit()
+    }
+)
+
+const profilePwdEdit = new ProfileLayout(
+    'main',{
+        buttonBack: btnBack,
+        content: new ProfilePwdEdit()
+    }
+)
+
+const modalsPage = new ModalsPage()
+
 const ROUTES = {
   auth: '/',
   signin: '/signin',
   err404: '/err404',
   err500: '/err500',
-  chat: '/chat'
+  chat: '/chat',
+  profile: '/profile',
+  profileEdit: '/profile-edit',
+  profilePwdEdit: '/password-edit',
+  modals: '/modals'
 }
 
 
@@ -69,6 +108,18 @@ const changeRoute = (): any => {
   if (path === ROUTES.chat) {
     return chatPage
   }
+  if (path === ROUTES.profile) {
+    return profilePage
+  }
+  if (path === ROUTES.profileEdit) {
+    return profileEdit
+  }
+  if (path === ROUTES.profilePwdEdit) {
+    return profilePwdEdit
+  }
+  if (path === ROUTES.modals) {
+    return modalsPage
+  }
 }
 
 
@@ -83,72 +134,3 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*import Handlebars from 'handlebars'
-// @ts-ignore
-import auth from './templates/auth.tmpl.js'
-
-// @ts-ignore
-import button from './partials/buttons/button.tmpl.js'
-// @ts-ignore
-import input from './partials/inputs/input.tmpl.js'
-// @ts-ignore
-import link from './partials/buttons/link.tmpl.js'
-
-Handlebars.registerPartial('button', button)
-Handlebars.registerPartial('input', input)
-Handlebars.registerPartial('link', link)
-document.addEventListener('DOMContentLoaded', () => {
-  const root = document.querySelector('#app')
-
-  const template = Handlebars.compile(auth)
-
-  const result = [
-    template({
-      text: 'Вход',
-      buttons: [
-        {
-          aWrap: true,
-          title: 'Авторизоваться',
-          className: 'btn btn-second text-white',
-          src: '../views/home/index.html'
-        },
-        {
-          aWrap: true,
-          title: 'Нет аккаунта?',
-          className: 'btn btn-common text-blue',
-          src: '../views/signin/index.html'
-        },
-      ],
-      inputs: [
-        {
-          inputLabel: 'Логин',
-          inputName: 'login',
-          inputType: 'text'
-        },
-        {
-          inputLabel: 'Пароль',
-          inputName: 'password',
-          inputType: 'password'
-        },
-    ]
-    })
-  ]
-
-  // @ts-ignore
-  root.innerHTML = result
-})*/

@@ -8,6 +8,7 @@ const template = `
 <div class="form-wrapper-bottom d-flex direction-col align-c">  
   {{{ buttons }}}
 </div>
+{{{ modalsBtn }}}
 `
 
 export default template

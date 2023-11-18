@@ -14,7 +14,7 @@ const template = `
         </svg>
         <div class="text-dark text-40-600">{{title}}</div>
         <div class="text-dark text-20-500">Исправляем ошибку</div>
-        <div><a class="text-blue text-12-500">Назад</a></div>
+        <div><a class="text-blue text-12-500" href="/" >Назад</a></div>
       </div>
     </div> 
 `

@@ -2,13 +2,15 @@ import template from './chat.tmpl.ts';
 import Block from '../../lib/Block.ts';
 import Panel from '../../components/chat/panel';
 import InputSearch from '../../components/inputSearch';
-import LinkProfile from '../../components/linkProfile';
+import LinkProfile from '../../components/profile/link';
 import Card from '../../components/card';
 import Dialog from '../../components/chat/dialog';
 import DialogHeader from '../../components/chat/dialog/dialogHeader';
 import DialogFooter from '../../components/chat/dialog/dialogFooter';
 import Input from '../../components/input';
 import msgCard from '../../components/card/msgCard';
+import ButtonSend from '../../components/chat/dialog/buttonSend';
+import {formValidation} from '../../utils/validation.ts';
 
 
 export default class ChatPage extends Block {
@@ -118,7 +120,7 @@ export default class ChatPage extends Block {
                         }
                     ),
                     new DialogFooter(
-                        'div',
+                        'form',
                         {
                             userName: 'Вася Пупкин',
                             inputMsg: new Input(
@@ -132,7 +134,25 @@ export default class ChatPage extends Block {
                                     }
                                 }
                             ),
+                            buttonSend: new ButtonSend(
+                                'div',{
+                                    events: {
+                                        click: (e: any) => {
+                                            e.preventDefault()
+                                            e.stopPropagation()
+                                            const form = document.querySelector('#msg-form')
+                                            // @ts-ignore
+                                            const inputs = form.querySelectorAll('input')
+                                            formValidation(form, inputs)
+                                        }
+                                    },
+                                    attr: {
+                                        class: 'd-flex justify-c'
+                                    }
+                                }
+                            ),
                             attr: {
+                                id: 'msg-form',
                                 class: 'dialog-footer'
                             }
                         }

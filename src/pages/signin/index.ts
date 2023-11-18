@@ -2,6 +2,7 @@ import Block from '../../lib/Block.ts';
 import template from '../auth/auth.tmpl.ts';
 import Button from '../../components/button';
 import Input from '../../components/input';
+import {formValidation} from '../../utils/validation.ts';
 
 export default class SigninPage extends Block {
     render() {
@@ -10,7 +11,7 @@ export default class SigninPage extends Block {
         })
     }
     constructor() {
-        super('div', {
+        super('form', {
             buttons: [
                 new Button('div', {
                     title: 'Зарегистрироваться',
@@ -21,10 +22,9 @@ export default class SigninPage extends Block {
                     },
                     events: {
                         click: (e: any) => {
-                            // window.location.pathname = '/signin'
-                            e.preventDefault()
-                            e.stopPropagation()
-                            console.log('Нет аккаунта? click')
+                            const form = e.target.form
+                            const inputs = e.target.form.querySelectorAll('input')
+                            formValidation(form, inputs, true)
                         }
                     }
                 }
@@ -38,10 +38,9 @@ export default class SigninPage extends Block {
                     },
                     events: {
                         click: (e: any) => {
-                            // window.location.pathname = '/signin'
-                            e.preventDefault()
-                            e.stopPropagation()
-                            console.log('Нет аккаунта? click')
+                            const form = e.target.form
+                            const inputs = e.target.form.querySelectorAll('input')
+                            formValidation(form, inputs, true)
                         }
                     }
                 })
@@ -105,6 +104,7 @@ export default class SigninPage extends Block {
                 })
             ],
             attr: {
+                id: 'signin-form',
                 class: 'form-wrapper d-flex direction-col align-c justify-sb'
             }
         });

@@ -10,13 +10,13 @@ export default class Block {
         FLOW_RENDER: "flow:render"
     } as const;
 
-    _props
+    _props: object
     _children: object
     _id: string
     _element: any
-    _lists
-    _meta
-    _eventBus
+    _lists: object
+    _meta: {tagName: string, props: object}
+    _eventBus: EventBus
     _setUpdate: boolean = false
     constructor(tagName: string = 'div', propsAndChilds: object = {}) {
 
@@ -58,6 +58,7 @@ export default class Block {
     render() {}
 
     addEvents () {
+        // @ts-ignore
         const { events = {} } = this._props
 
         Object.keys(events).forEach(eventName => {
@@ -65,6 +66,7 @@ export default class Block {
         })
     }
     removeEvents () {
+        // @ts-ignore
         const { events = {} } = this._props
 
         Object.keys(events).forEach((eventName) => {
@@ -73,6 +75,7 @@ export default class Block {
     }
 
     addAttribute () {
+        // @ts-ignore
         const { attr = {} } = this._props
 
         Object.entries(attr).forEach(([key, value]) => {
@@ -80,13 +83,13 @@ export default class Block {
         })
     }
 
-    getChildren(propsAndChilds) {
+    getChildren(propsAndChilds: any) {
 
-        const children = {}
-        const props= {}
-        const lists= {}
+        const children: any = {}
+        const props: any = {}
+        const lists: any = {}
 
-        Object.keys(propsAndChilds).forEach((key) =>{
+        Object.keys(propsAndChilds).forEach((key: string) =>{
             if (propsAndChilds[key] instanceof  Block) {
                 children[key] = propsAndChilds[key]
             }
@@ -108,31 +111,31 @@ export default class Block {
             propsAndStubs[key] = `<div data-id ="${child._id}"></div>`
         })
 
-        Object.entries(this._lists).forEach(([key, child]) => {
+        Object.entries(this._lists).forEach(([key]) => {
             propsAndStubs[key] = `<div data-id ="__l_${key}"></div>`
         })
 
-        const fragment = this.createDocumentElement('template')
+        const fragment: any = this.createDocumentElement('template')
         fragment.innerHTML = Handlebars.compile(template)(propsAndStubs)
 
         Object.values(this._children).forEach(child => {
-            const stub = fragment.content.querySelector(`[data-id="${child._id}"]`)
+            const stub = fragment['content'].querySelector(`[data-id="${child._id}"]`)
             if(stub) {
                 stub.replaceWith(child.getContent())
             }
         })
         Object.entries(this._lists).forEach(([key, child]) => {
             const stub = fragment.content.querySelector(`[data-id="__l_${key}"]`)
-            const listContent = this.createDocumentElement('template')
-            child.forEach((item) => {
+            const listContent: any = this.createDocumentElement('template')
+            child.forEach((item: any) => {
                 if (item instanceof Block) {
-                    listContent.content.append(item.getContent())
+                    listContent['content'].append(item.getContent())
                 } else {
-                    listContent.content.append(`${item}`)
+                    listContent['content'].append(`${item}`)
                 }
             })
             if(stub) {
-                stub.replaceWith(listContent.content)
+                stub.replaceWith(listContent['content'])
             }
 
         })
@@ -151,58 +154,22 @@ export default class Block {
         }
     }
 
-    _componentDidUpdate(oldProps, newProps) {
+    _componentDidUpdate(oldProps: any, newProps: any) {
         const isReRender = this.componentDidUpdate(oldProps, newProps)
         if(isReRender) {
             this._eventBus.emit(Block.EVENTS.FLOW_RENDER)
         }
     }
-    componentDidUpdate(oldProps, newProps) {
+    componentDidUpdate(oldProps: any, newProps: any) {
         console.log(oldProps, newProps)
         return true
     }
-
-    /*setProps (newProps) {
-        if (!newProps) {
-            return
-        }
-
-        const {children, props, lists} = this.getChildren(newProps)
-
-        if (Object.values(children).length) {
-            Object.assign(this._children, children)
-        }
-        if (Object.values(children).length) {
-            Object.assign(this._lists, children)
-        }
-        if (Object.values(props).length) {
-            Object.assign(this._props, props)
-        }
-    }
-
-    makePropsProxy(props) {
-        const self = this;
-        return new Proxy(props, {
-            get(target, prop) {
-              const value = target[prop]
-                return typeof value === "function" ? value.bind(target) : value
-            },
-            set(target, prop, value) {
-                const oldValue = {...target}
-                target[prop] = value;
-                self._eventBus.emit(Block.EVENTS.FLOW_CDU, oldValue, target)
-                return true
-            }
-        })
-    }*/
 
     getContent() {
         return this._element;
     }
 
-
-    // new setProps && makeProps
-    setProps(newProps) {
+    setProps(newProps: object) {
         if (!newProps) {
             return
         }
@@ -228,11 +195,11 @@ export default class Block {
 
     makePropsProxy(props: object) {
         return new Proxy(props, {
-            get(target, prop) {
+            get(target: any, prop: string | symbol) {
                 const value = target[prop]
                 return typeof value === "function" ? value.bind(target) : value
             },
-            set: (target, prop, value) => {
+            set: (target: any, prop: string | symbol, value) => {
                 if (target[prop] !== value) {
                     target[prop] = value
                     this._setUpdate = true

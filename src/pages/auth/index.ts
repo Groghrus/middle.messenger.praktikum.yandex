@@ -2,16 +2,17 @@ import template from './auth.tmpl.ts';
 import Block from '../../lib/Block.ts';
 import Button from '../../components/button';
 import Input from '../../components/input';
-import {validation} from '../../utils/validation.ts';
+import {formValidation} from '../../utils/validation.ts';
 
 export default class AuthPage extends Block {
+
     render() {
         return this.compile(template, {
             text: 'Вход'
         })
     }
     constructor() {
-        super('div', {
+        super('form', {
             buttons: [
                 new Button('div', {
                     title: 'Авторизоваться',
@@ -22,9 +23,9 @@ export default class AuthPage extends Block {
                     },
                     events: {
                         click: (e: any) => {
-                            window.location.pathname = '/chat'
-                            e.preventDefault()
-                            e.stopPropagation()
+                            const form = e.target.form
+                            const inputs = e.target.form.querySelectorAll('input')
+                            formValidation(form, inputs)
                         }
                     }
                 }
@@ -52,19 +53,6 @@ export default class AuthPage extends Block {
                     inputType: 'text',
                     attr: {
                         class: 'input-wrapper',
-                    },
-                    events: {
-                        input: (e: any) => {
-                            const input = e.target
-                            if (!input.value) {return null}
-                            const newValue = validation(input.name, input.value)
-                            if (!newValue) {
-                                input.classList.add('error-text')
-                                return null
-                            }
-                            input.classList.remove('error-text')
-                            input.value = newValue
-                        }
                     }
                 }),
                 new Input('div', {
@@ -77,7 +65,58 @@ export default class AuthPage extends Block {
                     events: {}
                 })
             ],
+            modalsBtn: [
+                new Button(
+                'div',
+                {
+                    title: 'Модальные окна',
+                    events: {
+                        click: (e: any) => {
+                            window.location.pathname = '/modals'
+                            e.preventDefault()
+                            e.stopPropagation()
+                        }
+                    },
+                    attr: {
+                        class: 'btn-wrapper d-flex justify-c'
+                    },
+                }
+                ),
+                new Button(
+                    'div',
+                    {
+                        title: 'Error 404',
+                        events: {
+                            click: (e: any) => {
+                                window.location.pathname = '/err404'
+                                e.preventDefault()
+                                e.stopPropagation()
+                            }
+                        },
+                        attr: {
+                            class: 'btn-wrapper d-flex justify-c'
+                        },
+                    }
+                ),
+                new Button(
+                    'div',
+                    {
+                        title: 'Error 500',
+                        events: {
+                            click: (e: any) => {
+                                window.location.pathname = '/err500'
+                                e.preventDefault()
+                                e.stopPropagation()
+                            }
+                        },
+                        attr: {
+                            class: 'btn-wrapper d-flex justify-c'
+                        },
+                    }
+                )
+            ],
             attr: {
+                id: 'auth-form',
                 class: 'form-wrapper d-flex direction-col align-c justify-sb'
             }
         })

@@ -20,10 +20,68 @@
     }
   }
 }
-
+.btn-send {
+  background-color: $blue-color;
+  height: 2.8rem;
+  width: 2.8rem;
+  border-radius: 50%;
+  position: relative;
+  .arrow {
+    cursor: pointer;
+    position: relative;
+    width: 2.8rem;
+    height: 2.8rem;
+    &:hover {
+      animation: arrow 1s linear infinite;
+    }
+    div {
+      position: relative;
+      top: 0;
+      width: 15px;
+      height: 2px;
+      background-color: $white-color;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+      left: 6px;
+      display: block;
+      &::after {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 2px;
+        top: -3px;
+        right: -1px;
+        background-color: $white-color;
+        transform: rotate(45deg);
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 2px;
+        top: 3px;
+        right: -1px;
+        background-color: $white-color;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  @keyframes arrow {
+    0% {
+      left:0;
+    }
+    50% {
+      left:10px;
+    }
+    100% {
+      left:0;
+    }
+  }
+}
 .input-wrapper {
   width: 100%;
   position: relative;
+
   .input {
     background-color: transparent;
     border-bottom: 1px solid $blue-color;
@@ -42,10 +100,14 @@
       height: 3.2rem;
       padding: 1rem 2rem;
       margin-bottom: 0;
+      &.error-text {
+        border-bottom: 2px $red-color solid;
+      }
     }
   }
   .error-text {
     color: $red-color;
+    border-bottom: 2px $red-color solid;
   }
   .input:not(:placeholder-shown) ~ .cut {
     transform: translateY(8px);
