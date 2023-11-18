@@ -15,6 +15,6 @@ const template = `
       <div class="msg-icon"><span class="text-12-500 text-white">{{msgCount}}</span></div>
     </div>
   </div>
-`
+`;
 
-export default template
+export default template;

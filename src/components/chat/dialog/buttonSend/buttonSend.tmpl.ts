@@ -4,6 +4,6 @@ const template = `
     <div></div>
   </button>
 </div> 
-`
+`;
 
-export default template
+export default template;

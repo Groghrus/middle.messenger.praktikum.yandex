@@ -11,6 +11,6 @@ const template = `
     {{#if mAlert}}
       <span class="text-red text-12-500">Нужно выбрать файл</span>
     {{/if}}
-`
+`;
 
-export default template
+export default template;

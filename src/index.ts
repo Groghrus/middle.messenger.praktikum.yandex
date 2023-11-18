@@ -11,72 +11,60 @@ import ProfileEdit from './pages/profile-edit';
 import ProfilePwdEdit from './pages/password-edit';
 import ModalsPage from './pages/modals';
 
-
 const authPage = new MainLayout(
-    'main',
-    {
-      content: new AuthPage(),
-      attr: {
-        class: 'layout'
-      }
-    }
-)
+  'main',
+  {
+    content: new AuthPage(),
+    attr: {
+      class: 'layout',
+    },
+  },
+);
 const signinPage = new MainLayout(
-    'main',
-    {
-      content: new SigninPage(),
-      attr: {
-        class: 'layout'
-      }
-    }
-)
-const error404 = new ErrorPage(
-    'main', {
-      title: '404',
-      attr: {
-        class: 'layout'
-      }
+  'main',
+  {
+    content: new SigninPage(),
+    attr: {
+      class: 'layout',
     },
-)
-const error500 = new ErrorPage(
-    'main', {
-      title: '500',
-      attr: {
-        class: 'layout'
-      }
-    },
-)
+  },
+);
+const error404 = new ErrorPage('main', {
+  title: '404',
+  attr: {
+    class: 'layout',
+  },
+});
+const error500 = new ErrorPage('main', {
+  title: '500',
+  attr: {
+    class: 'layout',
+  },
+});
 
-const chatPage = new ChatPage()
+const chatPage = new ChatPage();
 
-const btnBack = new ButtonBack(
-    'div',{
-        attr: {
-            class: 'profile-page__back'
-        }
-    })
+const btnBack = new ButtonBack('div', {
+  attr: {
+    class: 'profile-page__back',
+  },
+});
 
-const profilePage = new ProfileLayout(
-    'main', {
-        buttonBack: btnBack,
-        content: new ProfilePage()
-    }
-)
-const profileEdit = new ProfileLayout(
-    'main',{
-        buttonBack: btnBack,
-        content: new ProfileEdit()
-    }
-)
+const profilePage = new ProfileLayout('main', {
+  buttonBack: btnBack,
+  content: new ProfilePage(),
+});
+const profileEdit = new ProfileLayout('main', {
+  buttonBack: btnBack,
+  content: new ProfileEdit(),
+});
 
-const profilePwdEdit = new ProfileLayout(
-    'main',{
-        buttonBack: btnBack,
-        content: new ProfilePwdEdit()
-    }
-)
+const profilePwdEdit = new ProfileLayout('main', {
+  buttonBack: btnBack,
+  content: new ProfilePwdEdit(),
+});
 
-const modalsPage = new ModalsPage()
+const modalsPage = new ModalsPage();
 
 const ROUTES = {
   auth: '/',
@@ -87,50 +75,46 @@ const ROUTES = {
   profile: '/profile',
   profileEdit: '/profile-edit',
   profilePwdEdit: '/password-edit',
-  modals: '/modals'
-}
-
+  modals: '/modals',
+};
 
 const changeRoute = (): any => {
-  let path = window.location.pathname
+  const path = window.location.pathname;
   if (path === ROUTES.auth) {
-    return  authPage
+    return authPage;
   }
   if (path === ROUTES.signin) {
-    return signinPage
+    return signinPage;
   }
   if (path === ROUTES.err404) {
-    return error404
+    return error404;
   }
   if (path === ROUTES.err500) {
-    return error500
+    return error500;
   }
   if (path === ROUTES.chat) {
-    return chatPage
+    return chatPage;
   }
   if (path === ROUTES.profile) {
-    return profilePage
+    return profilePage;
   }
   if (path === ROUTES.profileEdit) {
-    return profileEdit
+    return profileEdit;
   }
   if (path === ROUTES.profilePwdEdit) {
-    return profilePwdEdit
+    return profilePwdEdit;
   }
   if (path === ROUTES.modals) {
-    return modalsPage
+    return modalsPage;
   }
-}
-
-
+};
 
 window.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('app');
 
   if (root) {
-    const component: MainLayout = changeRoute()
+    const component: MainLayout = changeRoute();
     root.append(component._element!);
     component.dispatchComponentDidMount();
   }
 });
-

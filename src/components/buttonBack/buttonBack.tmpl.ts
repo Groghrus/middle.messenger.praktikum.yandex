@@ -6,5 +6,5 @@ const template = `
     <path d="M13 19L9 14L13 9" stroke="white" stroke-width="1.6"/>
   </svg>
 </button>
-`
-export default template
+`;
+export default template;

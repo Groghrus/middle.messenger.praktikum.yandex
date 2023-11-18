@@ -7,6 +7,6 @@ const template = `
       name="{{inputName}}"
       value="{{inputValue}}"
       > 
-`
+`;
 
-export default template
+export default template;

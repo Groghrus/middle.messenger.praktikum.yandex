@@ -8,6 +8,6 @@ const template = `
           {{{ buttons }}}
           </div>            
         </form>   
-`
+`;
 
-export default template
+export default template;

@@ -15,6 +15,6 @@ const template = `
     </div>
   </div>
   </div>
-`
+`;
 
-export default template
+export default template;

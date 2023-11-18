@@ -3,6 +3,6 @@ const template = `
   <span class="text">{{ text }}</span>
   <span class="time ">{{ time }}</span>
 </div>
-`
+`;
 
-export default template
+export default template;

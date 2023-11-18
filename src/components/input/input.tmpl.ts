@@ -6,5 +6,5 @@ const template = `
     name="{{inputName}}"
   >
   <label class="label">{{inputLabel}}</label>
-`
-export default template
+`;
+export default template;

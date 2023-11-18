@@ -15,6 +15,6 @@ const template = `
         <circle cx="1.5" cy="14" r="1.5" fill="#1E1E1E"/>
       </svg>
     </button>  
-`
+`;
 
-export default template
+export default template;

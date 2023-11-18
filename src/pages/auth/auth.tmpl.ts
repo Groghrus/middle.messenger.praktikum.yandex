@@ -9,6 +9,6 @@ const template = `
   {{{ buttons }}}
 </div>
 {{{ modalsBtn }}}
-`
+`;
 
-export default template
+export default template;

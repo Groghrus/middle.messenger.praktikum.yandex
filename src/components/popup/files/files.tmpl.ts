@@ -17,5 +17,5 @@ const template = `
         <div class="text-dark text-12-500">Удалить пользователя</div>
       </div>
     </div>
-`
-export default template
+`;
+export default template;

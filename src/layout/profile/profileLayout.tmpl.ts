@@ -3,5 +3,5 @@ const template = `
   {{{ buttonBack }}}
   {{{ content }}} 
 </div>
-`
-export default template
+`;
+export default template;

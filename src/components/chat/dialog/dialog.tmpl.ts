@@ -3,6 +3,6 @@ const template = `
      <div class="dialog-main__messages">
         {{{ messages }}}
       </div> 
-`
+`;
 
-export default template
+export default template;

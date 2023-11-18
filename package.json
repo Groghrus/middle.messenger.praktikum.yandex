@@ -10,7 +10,10 @@
     "start": "vite",
     "prebuild": "tsc --noEmit",
     "build": "npm run prebuild && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "run-s lint:ts lint:scss",
+    "lint:ts": "npx eslint . --ext .ts --fix",
+    "lint:scss": "npx stylelint '**/*.scss' --fix"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.9.1",
@@ -28,6 +31,7 @@
     "path": "^0.12.7",
     "vite-plugin-handlebars": "^1.6.0",
     "@types/uuid": "^9.0.7",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "vite": "^4.4.5"
   }
 }

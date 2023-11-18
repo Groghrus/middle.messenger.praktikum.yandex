@@ -2,3 +2,6 @@
 /node_modules
 /dist
 /.github
+/src/index.ts
+/src/lib
+/src/typings
