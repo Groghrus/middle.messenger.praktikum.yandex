@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "start": "vite",
+    "start": "tsc && vite build && vite --port 3000 --host",
     "prebuild": "tsc --noEmit",
     "build": "npm run prebuild && vite build",
     "preview": "vite preview",
