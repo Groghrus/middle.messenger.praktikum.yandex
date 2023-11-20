@@ -3,7 +3,7 @@ import Block from '../../lib/Block.ts';
 import template from '../auth/auth.tmpl.ts';
 import Button from '../../components/button';
 import Input from '../../components/input';
-import { formValidation } from '../../utils/validation.ts';
+import { formValidation, inputValidation } from '../../utils/validation.ts';
 
 export default class SigninPage extends Block {
   render() {
@@ -23,11 +23,7 @@ export default class SigninPage extends Block {
             class: 'btn-wrapper',
           },
           events: {
-            click: (e: any) => {
-              const { form } = e.target;
-              const inputs = e.target.form.querySelectorAll('input');
-              formValidation(form, inputs, true);
-            },
+            click: formValidation,
           },
         }),
         new Button('div', {
@@ -38,11 +34,7 @@ export default class SigninPage extends Block {
             class: 'btn-wrapper',
           },
           events: {
-            click: (e: any) => {
-              const { form } = e.target;
-              const inputs = e.target.form.querySelectorAll('input');
-              formValidation(form, inputs, true);
-            },
+            click: formValidation,
           },
         }),
       ],
@@ -54,6 +46,9 @@ export default class SigninPage extends Block {
           attr: {
             class: 'input-wrapper input-text text-10-400 text-grey',
           },
+          events: {
+            blur: inputValidation
+          },
         }),
         new Input('div', {
           inputLabel: 'Логин',
@@ -61,6 +56,9 @@ export default class SigninPage extends Block {
           inputType: 'text',
           attr: {
             class: 'input-wrapper input-text text-10-400 text-grey',
+          },
+          events: {
+            blur: inputValidation
           },
         }),
         new Input('div', {
@@ -70,6 +68,9 @@ export default class SigninPage extends Block {
           attr: {
             class: 'input-wrapper input-text text-10-400 text-grey',
           },
+          events: {
+            blur: inputValidation
+          },
         }),
         new Input('div', {
           inputLabel: 'Фамилия',
@@ -77,6 +78,9 @@ export default class SigninPage extends Block {
           inputType: 'text',
           attr: {
             class: 'input-wrapper input-text text-10-400 text-grey',
+          },
+          events: {
+            blur: inputValidation
           },
         }),
         new Input('div', {
@@ -86,6 +90,9 @@ export default class SigninPage extends Block {
           attr: {
             class: 'input-wrapper input-text text-10-400 text-grey',
           },
+          events: {
+            blur: inputValidation
+          },
         }),
         new Input('div', {
           inputLabel: 'Пароль',
@@ -94,6 +101,9 @@ export default class SigninPage extends Block {
           attr: {
             class: 'input-wrapper input-text text-10-400 text-grey',
           },
+          events: {
+            blur: inputValidation
+          },
         }),
         new Input('div', {
           inputLabel: 'Пароль (ещё раз)',
@@ -101,6 +111,9 @@ export default class SigninPage extends Block {
           inputType: 'password',
           attr: {
             class: 'input-wrapper input-text text-10-400 text-grey',
+          },
+          events: {
+            blur: inputValidation
           },
         }),
       ],

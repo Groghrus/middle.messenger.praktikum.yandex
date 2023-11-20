@@ -4,6 +4,7 @@ import AvatarProfile from '../../components/profile/avatar';
 import Block from '../../lib/Block.ts';
 import Button from '../../components/button';
 import InputProfile from '../../components/profile/input';
+import {inputValidation} from '../../utils/validation.ts';
 
 export default class ProfileEdit extends Block {
   render() {
@@ -39,6 +40,9 @@ export default class ProfileEdit extends Block {
             attr: {
               class: 'text-field',
             },
+            events: {
+              blur: inputValidation
+            },
           },
         ),
         new InputProfile(
@@ -51,6 +55,9 @@ export default class ProfileEdit extends Block {
             inputValue: 'ivanivanov',
             attr: {
               class: 'text-field',
+            },
+            events: {
+              blur: inputValidation
             },
           },
         ),
@@ -65,6 +72,9 @@ export default class ProfileEdit extends Block {
             attr: {
               class: 'text-field',
             },
+            events: {
+              blur: inputValidation
+            },
           },
         ),
         new InputProfile(
@@ -77,6 +87,9 @@ export default class ProfileEdit extends Block {
             inputValue: 'Иванов',
             attr: {
               class: 'text-field',
+            },
+            events: {
+              blur: inputValidation
             },
           },
         ),
@@ -91,6 +104,9 @@ export default class ProfileEdit extends Block {
             attr: {
               class: 'text-field',
             },
+            events: {
+              blur: inputValidation
+          },
           },
         ),
         new InputProfile(
@@ -103,6 +119,9 @@ export default class ProfileEdit extends Block {
             inputValue: '+7 (999) 999 99 99',
             attr: {
               class: 'text-field',
+            },
+            events: {
+              blur: inputValidation
             },
           },
         ),

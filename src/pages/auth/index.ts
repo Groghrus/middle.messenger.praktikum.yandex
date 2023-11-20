@@ -3,7 +3,7 @@ import template from './auth.tmpl.ts';
 import Block from '../../lib/Block.ts';
 import Button from '../../components/button';
 import Input from '../../components/input';
-import { formValidation } from '../../utils/validation.ts';
+import {formValidation, inputValidation} from '../../utils/validation.ts';
 
 export default class AuthPage extends Block {
   render() {
@@ -17,17 +17,12 @@ export default class AuthPage extends Block {
       buttons: [
         new Button('div', {
           title: 'Авторизоваться',
-          type: 'button',
           className: 'btn btn-second text-white',
           attr: {
             class: 'btn-wrapper',
           },
           events: {
-            click: (e: any) => {
-              const { form } = e.target;
-              const inputs = e.target.form.querySelectorAll('input');
-              formValidation(form, inputs);
-            },
+            click: formValidation,
           },
         }),
         new Button('div', {
@@ -51,6 +46,10 @@ export default class AuthPage extends Block {
           inputLabel: 'Логин',
           inputName: 'login',
           inputType: 'text',
+          inputPlHolder: '',
+          events: {
+            blur: inputValidation
+          },
           attr: {
             class: 'input-wrapper',
           },
@@ -59,17 +58,38 @@ export default class AuthPage extends Block {
           inputLabel: 'Пароль',
           inputName: 'password',
           inputType: 'password',
+          inputPlHolder: '',
+          events: {
+            blur: inputValidation
+          },
           attr: {
             class: 'input-wrapper input-text text-10-400 text-grey',
           },
-          events: {},
         }),
       ],
       modalsBtn: [
         new Button(
-          'div',
-          {
+            'div', {
+              title: 'Зайти в чат',
+              type: '',
+              className: '',
+              events: {
+                click: (e: any) => {
+                  window.location.pathname = '/chat';
+                  e.preventDefault();
+                  e.stopPropagation();
+                },
+              },
+              attr: {
+                class: 'btn-wrapper d-flex justify-c',
+              },
+            },
+        ),
+        new Button(
+          'div', {
             title: 'Модальные окна',
+            type: '',
+            className: '',
             events: {
               click: (e: any) => {
                 window.location.pathname = '/modals';
@@ -86,6 +106,8 @@ export default class AuthPage extends Block {
           'div',
           {
             title: 'Error 404',
+            type: '',
+            className: '',
             events: {
               click: (e: any) => {
                 window.location.pathname = '/err404';
@@ -102,6 +124,8 @@ export default class AuthPage extends Block {
           'div',
           {
             title: 'Error 500',
+            type: '',
+            className: '',
             events: {
               click: (e: any) => {
                 window.location.pathname = '/err500';

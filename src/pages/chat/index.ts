@@ -11,7 +11,7 @@ import DialogFooter from '../../components/chat/dialog/dialogFooter';
 import Input from '../../components/input';
 import msgCard from '../../components/card/msgCard';
 import ButtonSend from '../../components/chat/dialog/buttonSend';
-import { formValidation } from '../../utils/validation.ts';
+import {formValidation, inputValidation} from '../../utils/validation.ts';
 
 export default class ChatPage extends Block {
   render() {
@@ -130,6 +130,9 @@ export default class ChatPage extends Block {
                   inputPlHolder: 'Сообщение',
                   inputType: 'text',
                   inputName: 'message',
+                  events: {
+                    blur: inputValidation
+                  },
                   attr: {
                     class: 'input-wrapper input-text input-msg text-10-400 text-grey',
                   },
@@ -137,14 +140,7 @@ export default class ChatPage extends Block {
               ),
               buttonSend: new ButtonSend('div', {
                 events: {
-                  click: (e: any) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const form = document.querySelector('#msg-form');
-                    // @ts-ignore
-                    const inputs = form.querySelectorAll('input');
-                    formValidation(form, inputs);
-                  },
+                  click: formValidation,
                 },
                 attr: {
                   class: 'd-flex justify-c',

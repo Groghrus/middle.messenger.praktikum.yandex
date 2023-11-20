@@ -2,15 +2,26 @@ import { v4 as makeUUID } from 'uuid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus.ts';
 
-export default class Block {
+type meta = {
+  tagName: string
+  props: props
+};
+
+type props = {
+  props?: Record<symbol | string, unknown>
+  attr?: Record<symbol | string, unknown>
+  events?: Record<symbol | string, (events: Event) => void>
+};
+
+export default abstract class Block<props extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
-  } as const;
+  };
 
-  _props: object;
+  _props: props;
 
   _children: object;
 
@@ -20,13 +31,13 @@ export default class Block {
 
   _lists: object;
 
-  _meta: {tagName: string, props: object};
+  _meta: meta | null = null;
 
   _eventBus: EventBus;
 
   _setUpdate: boolean = false;
 
-  constructor(tagName: string = 'div', propsAndChilds: object = {}) {
+  constructor(tagName: string = 'div', propsAndChilds: props) {
     const { children, props, lists } = this.getChildren(propsAndChilds);
 
     this._eventBus = new EventBus();
@@ -48,7 +59,8 @@ export default class Block {
   }
 
   init() {
-    this._element = this.createDocumentElement(this._meta?.tagName);
+    const { tagName } = this._meta as meta
+    this._element = this.createDocumentElement(tagName);
     this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
 
@@ -68,25 +80,36 @@ export default class Block {
   render() {}
 
   addEvents() {
-    // @ts-ignore
     const { events = {} } = this._props;
 
     Object.keys(events).forEach((eventName) => {
-      this._element.addEventListener(eventName, events[eventName]);
+
+      if (eventName === 'blur') {
+        const inputs = this.getContent().querySelectorAll('input')
+        inputs.forEach((input: any) => input.addEventListener(eventName, events[eventName]))
+        return
+      }
+
+      this.getContent().addEventListener(eventName, events[eventName]);
     });
   }
 
   removeEvents() {
-    // @ts-ignore
     const { events = {} } = this._props;
 
     Object.keys(events).forEach((eventName) => {
-      this._element.removeEventListener(eventName, events[eventName]);
+
+      if (eventName === 'blur') {
+        const inputs = this.getContent().querySelectorAll('input')
+        inputs.forEach((input: any) => input.removeEventListener(eventName, events[eventName]))
+        return
+      }
+
+      this.getContent().removeEventListener(eventName, events[eventName]);
     });
   }
 
   addAttribute() {
-    // @ts-ignore
     const { attr = {} } = this._props;
 
     Object.entries(attr).forEach(([key, value]) => {
@@ -166,14 +189,14 @@ export default class Block {
     }
   }
 
-  _componentDidUpdate(oldProps: any, newProps: any) {
+  _componentDidUpdate(oldProps: unknown, newProps: unknown) {
     const isReRender = this.componentDidUpdate(oldProps, newProps);
     if (isReRender) {
       this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  componentDidUpdate(oldProps: any, newProps: any) {
+  componentDidUpdate(oldProps: unknown, newProps: unknown) {
     console.log(oldProps, newProps);
     return true;
   }
@@ -206,7 +229,7 @@ export default class Block {
     }
   }
 
-  makePropsProxy(props: object) {
+  makePropsProxy(props: props) {
     return new Proxy(props, {
       get(target: any, prop: string | symbol) {
         const value = target[prop];

@@ -78,6 +78,9 @@
     }
   }
 }
+.error-input {
+  border-bottom: 2px $red-color solid !important;
+}
 .input-wrapper {
   width: 100%;
   position: relative;
@@ -107,8 +110,17 @@
   }
   .error-text {
     color: $red-color;
-    border-bottom: 2px $red-color solid;
+    position: absolute;
+    width: 20rem;
+    height: fit-content;
+    padding: 0.5rem;
+    border: 1px solid $red-color;
+    border-radius: 1rem;
+    bottom: -25%;
+    right: -76%;
+    z-index: 9;
   }
+
   .input:not(:placeholder-shown) ~ .cut {
     transform: translateY(8px);
   }
@@ -170,6 +182,7 @@
   }
 }
 .text-field {
+  position: relative;
   display: flex;
   width: 100%;
   align-items: center;
@@ -180,6 +193,18 @@
     display: flex;
     align-items: center;
     height: 2.1rem;
+  }
+  .error-text {
+    color: $red-color;
+    position: absolute;
+    width: 20rem;
+    height: fit-content;
+    padding: 0.5rem;
+    border: 1px solid $red-color;
+    border-radius: 1rem;
+    bottom: 9%;
+    right: -43%;
+    z-index: 9;
   }
 }
 .overlay {

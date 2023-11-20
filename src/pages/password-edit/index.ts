@@ -4,6 +4,7 @@ import template from '../profile/profile.tmpl.ts';
 import AvatarProfile from '../../components/profile/avatar';
 import InputProfile from '../../components/profile/input';
 import Button from '../../components/button';
+import {inputValidation} from '../../utils/validation.ts';
 
 export default class ProfilePwdEdit extends Block {
   render() {
@@ -39,6 +40,9 @@ export default class ProfilePwdEdit extends Block {
             attr: {
               class: 'text-field',
             },
+            events: {
+              blur: inputValidation
+            },
           },
         ),
         new InputProfile(
@@ -52,6 +56,9 @@ export default class ProfilePwdEdit extends Block {
             attr: {
               class: 'text-field',
             },
+            events: {
+              blur: inputValidation
+            },
           },
         ),
         new InputProfile(
@@ -64,6 +71,9 @@ export default class ProfilePwdEdit extends Block {
             inputValue: '•••••••••',
             attr: {
               class: 'text-field',
+            },
+            events: {
+              blur: inputValidation
             },
           },
         ),
