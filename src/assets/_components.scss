@@ -111,13 +111,13 @@
   .error-text {
     color: $red-color;
     position: absolute;
-    width: 20rem;
+    width: 32rem;
     height: fit-content;
     padding: 0.5rem;
     border: 1px solid $red-color;
     border-radius: 1rem;
     bottom: -25%;
-    right: -76%;
+    right: -128%;
     z-index: 9;
   }
 
@@ -197,13 +197,11 @@
   .error-text {
     color: $red-color;
     position: absolute;
-    width: 20rem;
+    width: 26rem;
     height: fit-content;
     padding: 0.5rem;
-    border: 1px solid $red-color;
-    border-radius: 1rem;
     bottom: 9%;
-    right: -43%;
+    right: -53%;
     z-index: 9;
   }
 }

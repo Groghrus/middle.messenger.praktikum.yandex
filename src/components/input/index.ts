@@ -6,7 +6,9 @@ interface IInputProps {
   inputType: string;
   inputPlHolder?: string;
   events?: object;
-  attr?: {class: string;};
+  attr?: {
+    class: string;
+  };
 }
 export default class Input extends Block {
   constructor(tagName: string, _props: IInputProps) {

@@ -5,8 +5,10 @@ interface IBtnProps {
   title: string;
   type?: string;
   className?: string;
-  attr: {class: string;};
-  events: object;
+  attr?: {
+    class: string;
+  };
+  events?: object;
 }
 export default class Button extends Block {
   constructor(tagName: string, _props: IBtnProps) {

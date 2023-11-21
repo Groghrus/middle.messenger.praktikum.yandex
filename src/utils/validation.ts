@@ -46,12 +46,13 @@ export const formValidation = (event: Event) => {
     formValue[input.name] = input.value;
     const validValue = validation(String(input.name), String(input.value));
     const validError = input.parentElement?.querySelector(`#error-text_${input.name}`);
+    const errorMsg: HTMLDivElement = document.createElement('div');
 
     if (!validValue) {
       isError = true;
     }
-    if (!validValue && !validError) {
-      const errorMsg: HTMLDivElement = document.createElement('div');
+    commonValid(validValue, validError, errorMsg, input)
+    /*if (!validValue && !validError) {
       errorMsg.setAttribute("id", `error-text_${input.name}`);
       errorMsg.classList.add('error-text');
       errorMsg.textContent = errorMessage?.[input.name];
@@ -63,20 +64,21 @@ export const formValidation = (event: Event) => {
           input.parentElement.querySelector(`#error-text_${input.name}`) as Node
       );
       input.classList.remove('error-input');
-    }
-
+    }*/
 
   });
   if (!isError) {
-    return formValue
+    return formValue;
   }
 };
 export const inputValidation = (event: Event) => {
   const input = event.target as HTMLInputElement;
   const validValue = validation(String(input.name), String(input.value));
   const validError = input.parentElement?.querySelector(`#error-text_${input.name}`);
-  if (!validValue && !validError) {
-    const errorMsg: HTMLDivElement = document.createElement('div');
+  const errorMsg: HTMLDivElement = document.createElement('div');
+
+  commonValid(validValue, validError, errorMsg, input)
+  /*if (!validValue && !validError) {
     errorMsg.setAttribute("id", `error-text_${input.name}`);
     errorMsg.classList.add('error-text');
     errorMsg.textContent = errorMessage?.[input.name];
@@ -88,7 +90,21 @@ export const inputValidation = (event: Event) => {
         input.parentElement.querySelector(`#error-text_${input.name}`) as Node
     );
     input.classList.remove('error-input');
-    input.value = String(validValue);
-  }
+  }*/
 }
 
+const commonValid = (validValue: any, validError: any, errorMsg: any, input: any ) => {
+  if (!validValue && !validError) {
+    errorMsg.setAttribute("id", `error-text_${input.name}`);
+    errorMsg.classList.add('error-text');
+    errorMsg.textContent = errorMessage?.[input.name];
+    input.parentElement?.insertBefore(errorMsg, input);
+    input.classList.add('error-input');
+  }
+  if (validValue && validError) {
+    input.parentElement?.removeChild(
+        input.parentElement.querySelector(`#error-text_${input.name}`) as Node
+    );
+    input.classList.remove('error-input');
+  }
+}

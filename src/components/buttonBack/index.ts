@@ -1,7 +1,9 @@
 import Block from '../../lib/Block.ts';
 import template from './buttonBack.tmpl.ts';
 interface IBtnBackProps {
-  attr?: {class: string;};
+  attr?: {
+    class: string;
+  };
   events?: object;
 }
 export default class ButtonBack extends Block {
