@@ -11,7 +11,7 @@
     "import/newline-after-import": "off",
     "@typescript-eslint/ban-types": "off",
     "lines-between-class-members": "off",
-    "@typescript-eslint/lines-between-class-members": "error",
+    "@typescript-eslint/lines-between-class-members": "off",
     "object-curly-newline": ["error", {
       "ImportDeclaration": "always"
     }]
