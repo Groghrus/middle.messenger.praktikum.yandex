@@ -8,11 +8,10 @@
     "max-len": [2, 120],
     "max-params": [2, 3],
     "no-useless-constructor": 0,
-    "lines-between-class-members": [
-      "error",
-      "always",
-      { "exceptAfterSingleLine": true }
-    ],
+    "import/newline-after-import": "off",
+    "@typescript-eslint/ban-types": "off",
+    "lines-between-class-members": "off",
+    "@typescript-eslint/lines-between-class-members": "error",
     "object-curly-newline": ["error", {
       "ImportDeclaration": "always"
     }]

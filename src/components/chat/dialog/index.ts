@@ -3,7 +3,7 @@ import template from './dialog.tmpl.ts';
 
 interface IDialogProps {
   date: String,
-  messages?: Array<any>,
+  messages?: Array<object>,
   attr?: {
     class: string;
   };
