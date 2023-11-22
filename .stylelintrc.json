@@ -1,0 +1,11 @@
+{
+  "customSyntax": "",
+  "rules": {
+    "color-hex-case": "lower"
+  },
+  "ignoreFiles": [
+    "dist/*",
+    "node_modules/*",
+    "build/*"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "extends": ["airbnb","eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": 2,
+    "no-underscore-dangle": "off",
+    "max-len": [2, 120],
+    "max-params": [2, 3],
+    "no-useless-constructor": 0,
+    "import/newline-after-import": "off",
+    "@typescript-eslint/ban-types": "off",
+    "lines-between-class-members": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "object-curly-newline": ["error", {
+      "ImportDeclaration": "always"
+    }]
+  }
+}
