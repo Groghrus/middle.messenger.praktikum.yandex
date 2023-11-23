@@ -13,13 +13,13 @@ type props = {
   events?: Record<symbol | string, (events: Event) => void>
 };
 
-export default abstract class Block<props extends Record<string, any> = any> {
+export default class Block<props extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
-  };
+  } as const;
 
   _props: props;
 

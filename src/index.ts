@@ -1,15 +1,16 @@
 import './assets/main.scss';
 import AuthPage from './pages/auth';
-import SigninPage from './pages/signin';
+// import SigninPage from './pages/signin';
 import MainLayout from './layout/main';
-import ErrorPage from './pages/error';
-import ChatPage from './pages/chat';
-import ProfilePage from './pages/profile';
-import ProfileLayout from './layout/profile';
-import ButtonBack from './components/buttonBack';
-import ProfileEdit from './pages/profile-edit';
-import ProfilePwdEdit from './pages/password-edit';
-import ModalsPage from './pages/modals';
+// import ErrorPage from './pages/error';
+// import ChatPage from './pages/chat';
+// import ProfilePage from './pages/profile';
+// import ProfileLayout from './layout/profile';
+// import ButtonBack from './components/buttonBack';
+// import ProfileEdit from './pages/profile-edit';
+// import ProfilePwdEdit from './pages/password-edit';
+// import ModalsPage from './pages/modals';
+import router, { Routes } from './lib/Router.ts';
 
 const authPage = new MainLayout(
   'main',
@@ -20,6 +21,7 @@ const authPage = new MainLayout(
     },
   },
 );
+/*
 const signinPage = new MainLayout(
   'main',
   {
@@ -65,7 +67,10 @@ const profilePwdEdit = new ProfileLayout('main', {
 });
 
 const modalsPage = new ModalsPage();
+ */
 
+
+/*
 const ROUTES = {
   auth: '/',
   signin: '/signin',
@@ -118,3 +123,32 @@ window.addEventListener('DOMContentLoaded', () => {
     component.dispatchComponentDidMount();
   }
 });
+*/
+window.addEventListener('DOMContentLoaded',  () => {
+
+    router
+        .use(Routes.Auth, authPage)
+        //.use(Routes.Signin, signinPage)
+
+    // let isProtectedRoute = true;
+    switch (window.location.pathname) {
+        case Routes.Auth:
+        //case Routes.Signin:
+            // isProtectedRoute = false;
+            break;
+    }
+    // try {
+    //     // await auth controller
+    //     router.start();
+    //
+    //     if (!isProtectedRoute) {
+    //         router.go(Routes.Profile);
+    //     }
+    // } catch (e) {
+    //     router.start();
+    //     if (isProtectedRoute) {
+    //         router.go(Routes.Auth);
+    //     }
+    //     console.log(e);
+    // }
+})
