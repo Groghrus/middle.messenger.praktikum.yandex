@@ -4,6 +4,8 @@ import Block from '../../lib/Block.ts';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import {formValidation, inputValidation} from '../../utils/validation.ts';
+import router from '../../lib/Router.ts';
+import AuthController from "../../controllers/AuthController.ts";
 
 export default class AuthPage extends Block {
   render() {
@@ -22,7 +24,17 @@ export default class AuthPage extends Block {
             class: 'btn-wrapper',
           },
           events: {
-            click: formValidation,
+            click: (e: any) => {
+              if(formValidation(e)) {
+                 const values = Object
+                    .values(this._element)
+                    .filter((child: any) => child.tagName === "INPUT")
+                    .map((child) => ([(child as HTMLInputElement).name, (child as HTMLInputElement).value]))
+                 const data = Object.fromEntries(values);
+                 console.log(data)
+                  AuthController.signIn(data)
+                }
+            },
           },
         }),
         new Button('div', {
@@ -33,10 +45,8 @@ export default class AuthPage extends Block {
             class: 'btn-wrapper',
           },
           events: {
-            click: (e: any) => {
-              window.location.pathname = '/signin';
-              e.preventDefault();
-              e.stopPropagation();
+            click: () => {
+              router.go('/sign-up')
             },
           },
         }),
@@ -46,6 +56,7 @@ export default class AuthPage extends Block {
           inputLabel: 'Логин',
           inputName: 'login',
           inputType: 'text',
+          inputValue: 'Grogh',
           inputPlHolder: '',
           events: {
             blur: inputValidation
@@ -58,6 +69,7 @@ export default class AuthPage extends Block {
           inputLabel: 'Пароль',
           inputName: 'password',
           inputType: 'password',
+          inputValue: 'Pwd12345',
           inputPlHolder: '',
           events: {
             blur: inputValidation

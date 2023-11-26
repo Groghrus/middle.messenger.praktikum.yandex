@@ -3,7 +3,7 @@ import Block from './Block.ts';
 
 export enum Routes {
     Auth = '/',
-    Signin = '/sign-up',
+    Register = '/sign-up',
     Chat = '/messenger',
     Profile = '/profile',
     ProfileEdit = '/settings',
@@ -14,25 +14,21 @@ export enum Routes {
 }
 
 class Router {
-    _history: History | undefined;
+    _history: History = window.history;
     _routes: Route[] = [];
     static _instance: Router;
     _currentRoute: Route | null = null;
-    _rootQuery: string = '';
 
-    constructor(rootQuery: string) {
+    constructor(readonly rootQuery: string) {
         if (Router._instance) {
             return Router._instance;
         }
         this._routes = [];
-        this._history = window.history;
-        this._currentRoute = null
-        this._rootQuery = rootQuery;
         Router._instance = this;
     }
 
-    use(pathname: string, block: typeof Block) {
-        const route = new Route(pathname, block, {rootQuery: this._rootQuery});
+    use(pathname: string, block: Block<any> | null) {
+        const route = new Route(pathname, block, this.rootQuery);
         this._routes.push(route);
         return this;
     }
@@ -45,23 +41,27 @@ class Router {
     }
     _onRoute(pathname: string) {
         const route = this.getRoute(pathname);
-        if(this._currentRoute) {
+        if (!route) {
+            return;
+        }
+        if(this._currentRoute && this._currentRoute !== route) {
             this._currentRoute.leave();
         }
         this._currentRoute = route;
         route.render();
     }
     go(pathname: string) {
-        this._history?.pushState({}, '', pathname)
+        this._history.pushState({}, '', pathname)
+        this._onRoute(pathname);
     }
     back() {
-        this._history?.back()
+        this._history.back()
     }
     forward() {
-        this._history?.forward()
+        this._history.forward()
     }
     getRoute(pathname: string): Route {
-        return <Route>this._routes.find((route) => route.match(pathname))!;
+        return <Route>this._routes.find((route) => route.match(pathname));
     }
 }
 export default new Router('#app');

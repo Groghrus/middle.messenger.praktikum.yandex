@@ -12,6 +12,7 @@ import Input from '../../components/input';
 import msgCard from '../../components/card/msgCard';
 import ButtonSend from '../../components/chat/dialog/buttonSend';
 import {formValidation, inputValidation} from '../../utils/validation.ts';
+import router from "../../lib/Router.ts";
 
 export default class ChatPage extends Block {
   render() {
@@ -35,10 +36,8 @@ export default class ChatPage extends Block {
                   class: 'link-info d-flex align-c justify-end',
                 },
                 events: {
-                  click: (e: any) => {
-                    window.location.pathname = '/profile';
-                    e.preventDefault();
-                    e.stopPropagation();
+                  click: () => {
+                      router.go('/profile')
                   },
                 },
               },

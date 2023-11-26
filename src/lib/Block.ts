@@ -37,7 +37,7 @@ export default class Block<props extends Record<string, any> = any> {
 
   _setUpdate: boolean = false;
 
-  constructor(tagName: string = 'div', propsAndChilds: props) {
+  constructor(tagName: string = '', propsAndChilds: props) {
     const { children, props, lists } = this.getChildren(propsAndChilds);
 
     this._eventBus = new EventBus();
@@ -64,7 +64,7 @@ export default class Block<props extends Record<string, any> = any> {
     this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  createDocumentElement(tagName: string): HTMLElement {
+  createDocumentElement(tagName: string) {
     return document.createElement(tagName);
   }
 
@@ -117,11 +117,10 @@ export default class Block<props extends Record<string, any> = any> {
     });
   }
 
-  getChildren(propsAndChilds: any) {
+  getChildren(propsAndChilds: props) {
     const children: any = {};
     const props: any = {};
     const lists: any = {};
-
     Object.keys(propsAndChilds).forEach((key: string) => {
       if (propsAndChilds[key] instanceof Block) {
         children[key] = propsAndChilds[key];

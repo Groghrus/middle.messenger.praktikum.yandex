@@ -4,9 +4,12 @@ import AvatarProfile from '../../components/profile/avatar';
 import Block from '../../lib/Block.ts';
 import Button from '../../components/button';
 import InputProfile from '../../components/profile/input';
-import {inputValidation} from '../../utils/validation.ts';
+import { inputValidation, formValidation } from '../../utils/validation.ts';
+import ProfileController from "../../controllers/ProfileController.ts";
+
 
 export default class ProfileEdit extends Block {
+
   render() {
     this._props = {
       attr: {
@@ -33,7 +36,7 @@ export default class ProfileEdit extends Block {
           'div',
           {
             inputLabel: 'Почта',
-            inputValue: 'pochta@yandex.ru',
+            inputValue: 'Почта',
             inputPlHolder: 'Почта',
             inputName: 'email',
             inputType: 'email',
@@ -122,6 +125,7 @@ export default class ProfileEdit extends Block {
             },
             events: {
               blur: inputValidation
+
             },
           },
         ),
@@ -136,14 +140,20 @@ export default class ProfileEdit extends Block {
           },
           events: {
             click: (e: any) => {
-              window.location.pathname = '/profile';
-              e.preventDefault();
-              e.stopPropagation();
+                if (formValidation(e)) {
+                    const values = Object
+                        .values(this._element.firstElementChild)
+                        .filter((child: any) => child.tagName === "INPUT")
+                        .map((child) => ([(child as HTMLInputElement).name, (child as HTMLInputElement).value]))
+                    const data = Object.fromEntries(values);
+                    console.log(data)
+                    ProfileController.changeProfile(data)
+                }
+
             },
           },
         }),
       ],
-
     });
   }
 }

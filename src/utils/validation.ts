@@ -52,19 +52,6 @@ export const formValidation = (event: Event) => {
       isError = true;
     }
     commonValid(validValue, validError, errorMsg, input)
-    /*if (!validValue && !validError) {
-      errorMsg.setAttribute("id", `error-text_${input.name}`);
-      errorMsg.classList.add('error-text');
-      errorMsg.textContent = errorMessage?.[input.name];
-      input.parentElement?.insertBefore(errorMsg, input);
-      input.classList.add('error-input');
-    }
-    if (validValue && validError) {
-      input.parentElement?.removeChild(
-          input.parentElement.querySelector(`#error-text_${input.name}`) as Node
-      );
-      input.classList.remove('error-input');
-    }*/
 
   });
   if (!isError) {
@@ -78,19 +65,6 @@ export const inputValidation = (event: Event) => {
   const errorMsg: HTMLDivElement = document.createElement('div');
 
   commonValid(validValue, validError, errorMsg, input)
-  /*if (!validValue && !validError) {
-    errorMsg.setAttribute("id", `error-text_${input.name}`);
-    errorMsg.classList.add('error-text');
-    errorMsg.textContent = errorMessage?.[input.name];
-    input.parentElement?.insertBefore(errorMsg, input);
-    input.classList.add('error-input');
-  }
-  if (validValue && validError) {
-    input.parentElement?.removeChild(
-        input.parentElement.querySelector(`#error-text_${input.name}`) as Node
-    );
-    input.classList.remove('error-input');
-  }*/
 }
 
 const commonValid = (validValue: any, validError: any, errorMsg: any, input: any ) => {

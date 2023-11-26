@@ -4,6 +4,10 @@ import template from '../auth/auth.tmpl.ts';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import { formValidation, inputValidation } from '../../utils/validation.ts';
+import router from "../../lib/Router.ts";
+import AuthController from "../../controllers/AuthController.ts";
+import { ISignUp } from "../../api/auth-api.ts";
+
 
 export default class SigninPage extends Block {
   render() {
@@ -23,7 +27,17 @@ export default class SigninPage extends Block {
             class: 'btn-wrapper',
           },
           events: {
-            click: formValidation,
+            click: (e: any) => {
+              if (formValidation(e)) {
+                const values = Object
+                    .values(this._element)
+                    .filter((child: any) => child.className === "input")
+                    .map((child) => ([(child as HTMLInputElement).name, (child as HTMLInputElement).value]))
+                const data = Object.fromEntries(values);
+                console.log(data)
+                AuthController.signUp(data as ISignUp)
+              }
+            }
           },
         }),
         new Button('div', {
@@ -34,7 +48,9 @@ export default class SigninPage extends Block {
             class: 'btn-wrapper',
           },
           events: {
-            click: formValidation,
+            click: () => {
+              router.go('/')
+            }
           },
         }),
       ],

@@ -2,7 +2,7 @@ import template from './button.tmpl.ts';
 import Block from '../../lib/Block.ts';
 
 interface IBtnProps {
-  title: string;
+  title?: string;
   type?: string;
   className?: string;
   attr?: {
