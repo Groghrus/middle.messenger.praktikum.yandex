@@ -1,5 +1,5 @@
 import EventBus from './EventBus.ts';
-import { set } from './helpers.ts';
+import {isEqual, set} from './helpers.ts';
 import Block from './Block.ts';
 import { IUser } from "../api/auth-api.ts";
 
@@ -26,19 +26,25 @@ class Store extends EventBus {
 
 const store = new Store();
 
-export const connectStore =(mapState: (state: State) => any) => {
+export const connectStore = (mapState: (state: State) => any) => {
    return (Component: typeof Block) => {
        return class extends Component {
-           constructor(props: any) {
-               super('div', {...props, ...mapState(store.getState())});
+           constructor(protected tagName: string, protected propsAndChilds: State) {
+               let state = mapState(store.getState())
+               super(tagName, {...propsAndChilds, ...mapState(store.getState())});
 
                store.on(StoreEvents.Updated, () => {
                   const stateProps = mapState(store.getState())
-                  this.setProps(stateProps)
+                   if (!isEqual(state, stateProps)) {
+                       this.setProps({...stateProps})
+                   }
+                   state = stateProps
                })
            }
        }
    }
 }
+
+
 
 export default store;
