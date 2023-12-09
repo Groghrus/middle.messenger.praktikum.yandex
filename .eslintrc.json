@@ -3,8 +3,38 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "rules": {
+<<<<<<< HEAD
     "@typescript-eslint/no-unused-vars": 2,
     "max-len": [2, 100],
     "max-params": [2, 3]
+=======
+    "linebreak-style": 0,
+    "@typescript-eslint/no-unused-vars": 2,
+    "no-underscore-dangle": "off",
+    "max-len": [2, 120],
+    "max-params": [2, 3],
+    "no-useless-constructor": 0,
+    "import/newline-after-import": "off",
+    "@typescript-eslint/ban-types": "off",
+    "lines-between-class-members": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "object-curly-newline": ["error", {
+      "ImportDeclaration": "always"
+    }],
+    "import/no-unresolved": [
+      2,
+      { "caseSensitive": false }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+>>>>>>> origin/sprint_3
   }
 }

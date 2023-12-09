@@ -2,3 +2,9 @@
 /node_modules
 /dist
 /.github
+<<<<<<< HEAD
+=======
+/src/index.ts
+/src/lib
+/src/typings
+>>>>>>> origin/sprint_3
