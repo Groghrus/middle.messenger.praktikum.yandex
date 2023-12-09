@@ -9,7 +9,7 @@
     "dev": "vite",
     "start": "tsc && vite build && vite --port 3000 --host",
     "prebuild": "tsc --noEmit",
-    "build": "npm run vite build",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "lintts": "eslint . --fix --ext .ts",
     "lintstyle": "run-s lint:scss"
