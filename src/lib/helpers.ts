@@ -67,3 +67,30 @@ export const isEqual = (lhs: PlainObject, rhs: PlainObject): boolean => {
 
     return true;
 };
+export const isEmpty = (value: unknown): boolean =>{
+    let  empty = true;
+
+    switch (typeof value){
+        case 'object':
+            if(value && Object.keys(value).length !== 0 || value instanceof Map || value instanceof Set) empty = false;
+            break;
+
+        case 'string':
+            empty = !value.length;
+            break;
+    }
+
+    return empty;
+}
+
+export const getDateToTime = (date: string | undefined) => {
+    date = date ? new Date(date) : new Date();
+    const minute: string = date.getMinutes().toString();
+    const hours: string = date.getHours().toString();
+
+    return `${hours.padStart(2, '0')}:${minute.padStart(2, '0')}`;
+}
+
+export const dateNowYMD = () => {
+    return new Date().toJSON().slice(0,10)
+}

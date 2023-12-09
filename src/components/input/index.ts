@@ -5,7 +5,7 @@ interface IInputProps {
   inputName: string;
   inputType: string;
   inputPlHolder?: string;
-  inputValue?: string;
+  inputValue?: string | number;
   events?: object;
   attr?: {
     class: string;

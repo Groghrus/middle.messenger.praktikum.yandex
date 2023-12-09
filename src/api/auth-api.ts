@@ -1,4 +1,4 @@
-import BaseApi from './base-api.ts'
+import BaseApi from './base-api.ts';
 
 export interface ISignUp {
   first_name: string;
@@ -29,19 +29,15 @@ export class AuthApi extends BaseApi {
     super('/auth');
   }
   signIn(data: ISignIn): Promise<unknown> {
-    // @ts-ignore
-    return this.http.post('/signin', { data: data })
+    return this.http.post('/signin', { data });
   }
   signUp(data: ISignUp): Promise<unknown> {
-    // @ts-ignore
-    return this.http.post('/signup', { data: data })
+    return this.http.post('/signup', { data });
   }
   logout(): Promise<unknown> {
-    return this.http.post('/logout')
+    return this.http.post('/logout');
   }
-  getUser(): Promise<IUser> {
-    // @ts-ignore
-    return this.http.get('/user')
+  getUser(): Promise<unknown> {
+    return this.http.get('/user');
   }
-
 }

@@ -4,8 +4,8 @@ import template from './modals.tmpl.ts';
 import Modal from '../../components/modal';
 import Button from '../../components/button';
 import Input from '../../components/input';
-import Actions from '../../components/popup/actions';
-import Files from '../../components/popup/files';
+import PopUpActions from '../../components/popup/actions';
+import PopUpFiles from '../../components/popup/files';
 
 export default class ModalsPage extends Block {
   render() {
@@ -148,12 +148,12 @@ export default class ModalsPage extends Block {
         ),
       ],
       popup: [
-        new Actions('div', {
+        new PopUpActions('div', {
           attr: {
             class: 'popup',
           },
         }),
-        new Files('div', {
+        new PopUpFiles('div', {
           attr: {
             class: 'popup',
           },

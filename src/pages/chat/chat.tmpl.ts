@@ -3,18 +3,30 @@ const template = `
   <div class="chat">
     {{{panel}}}
     <div class="users-list">
-      {{{usersList}}}
+      {{{createChatButton}}}
+      {{{chatList}}}     
     </div>
   </div>
   <div class="space">
-    <!--<div class="plug">
-      <div class="text-14-500 text-grey">{{ plug }}</div>
-    </div>-->
-    <div class="dialog">
-      {{{dialog}}}
-    </div>
+    
+    
+        <div class="dialog">
+          {{{dialogHeader}}}
+          {{{popUpMenu}}}
+          <div class="dialog-main">
+              <div class="text-grey text-12-500 text-align-c">{{date}}</div>
+              <div class="dialog-main__messages">
+                {{{plug}}}               
+                {{{messagesListAll}}}  
+              </div>  
+          </div>            
+          {{{dialogFooter}}}      
+        </div>       
   </div>
-  </div>
+  {{{ modalCreateChat }}}  
+  {{{ modalAddUser }}}  
+  {{{ modalAddAvatarToChat }}}  
+  </div>  
 `;
 
 export default template;

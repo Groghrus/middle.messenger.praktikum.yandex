@@ -1,6 +1,6 @@
 import Block from './Block.ts';
 
-export const renderDOM = (query: string, block: Block<any> | null) => {
+export const renderDOM = (query: string, block: Block) => {
     const root = document.querySelector(query);
 
     if (root === null) {
@@ -9,7 +9,9 @@ export const renderDOM = (query: string, block: Block<any> | null) => {
 
     root.innerHTML = '';
 
-    root.append(block?.getContent());
+    root.append(block?.getContent()!);
+
+    block.dispatchComponentDidMount()
 
     return root;
 }

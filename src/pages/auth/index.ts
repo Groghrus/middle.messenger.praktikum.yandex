@@ -13,7 +13,6 @@ export default class AuthPage extends Block {
       text: 'Вход',
     });
   }
-
   constructor() {
     super('form', {
       buttons: [
@@ -25,11 +24,13 @@ export default class AuthPage extends Block {
           },
           events: {
             click: (e: any) => {
+                console.log(e)
               if(formValidation(e)) {
                  const values = Object
                     .values(this._element)
                     .filter((child: any) => child.tagName === "INPUT")
                     .map((child) => ([(child as HTMLInputElement).name, (child as HTMLInputElement).value]))
+                  console.log(values)
                  const data = Object.fromEntries(values);
                  console.log(data)
                   AuthController.signIn(data)
@@ -56,7 +57,7 @@ export default class AuthPage extends Block {
           inputLabel: 'Логин',
           inputName: 'login',
           inputType: 'text',
-          inputValue: 'Grogh',
+          inputValue: '',
           inputPlHolder: '',
           events: {
             blur: inputValidation
@@ -69,7 +70,7 @@ export default class AuthPage extends Block {
           inputLabel: 'Пароль',
           inputName: 'password',
           inputType: 'password',
-          inputValue: 'Pwd12345',
+          inputValue: '',
           inputPlHolder: '',
           events: {
             blur: inputValidation
@@ -79,82 +80,13 @@ export default class AuthPage extends Block {
           },
         }),
       ],
-      modalsBtn: [
-        new Button(
-            'div', {
-              title: 'Зайти в чат',
-              type: '',
-              className: '',
-              events: {
-                click: (e: any) => {
-                  window.location.pathname = '/chat';
-                  e.preventDefault();
-                  e.stopPropagation();
-                },
-              },
-              attr: {
-                class: 'btn-wrapper d-flex justify-c',
-              },
-            },
-        ),
-        new Button(
-          'div', {
-            title: 'Модальные окна',
-            type: '',
-            className: '',
-            events: {
-              click: (e: any) => {
-                window.location.pathname = '/modals';
-                e.preventDefault();
-                e.stopPropagation();
-              },
-            },
-            attr: {
-              class: 'btn-wrapper d-flex justify-c',
-            },
-          },
-        ),
-        new Button(
-          'div',
-          {
-            title: 'Error 404',
-            type: '',
-            className: '',
-            events: {
-              click: (e: any) => {
-                window.location.pathname = '/err404';
-                e.preventDefault();
-                e.stopPropagation();
-              },
-            },
-            attr: {
-              class: 'btn-wrapper d-flex justify-c',
-            },
-          },
-        ),
-        new Button(
-          'div',
-          {
-            title: 'Error 500',
-            type: '',
-            className: '',
-            events: {
-              click: (e: any) => {
-                window.location.pathname = '/err500';
-                e.preventDefault();
-                e.stopPropagation();
-              },
-            },
-            attr: {
-              class: 'btn-wrapper d-flex justify-c',
-            },
-          },
-        ),
-      ],
       attr: {
         id: 'auth-form',
         class: 'form-wrapper d-flex direction-col align-c justify-sb',
       },
     });
+  }
+  init() {
+      console.log('auth', this)
   }
 }

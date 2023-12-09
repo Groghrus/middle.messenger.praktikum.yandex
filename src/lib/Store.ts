@@ -2,9 +2,18 @@ import EventBus from './EventBus.ts';
 import {isEqual, set} from './helpers.ts';
 import Block from './Block.ts';
 import { IUser } from "../api/auth-api.ts";
+import { IChat } from '../api/chat-api.ts';
+import { IMsgData } from '../controllers/MessagesController.ts';
+
 
 export interface State {
-    user?: IUser
+    user?: IUser;
+    chats?: IChat[];
+    messages?: Record<number, IMsgData[]>;
+    currentMessages?: IMsgData[];
+    selectChat?: IChat[] | [];
+    currentChatID?: number;
+
 }
 export enum StoreEvents {
   Updated = 'updated',

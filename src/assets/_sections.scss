@@ -17,6 +17,7 @@
   }
 }
 .main {
+  position: relative;
   display: grid;
   grid-template-columns: 33rem 1fr;
   width: 100%;
@@ -40,9 +41,13 @@
       height: 100%;
     }
     .dialog {
+      position: relative;
       height: 100%;
       display: grid;
       grid-template-rows: 5.4rem 1fr 5.4rem;
+      &.d-none {
+        display: none;
+      }
       &-header {
         padding: 1rem 0;
         border-bottom: 1px solid $gray-color;
@@ -60,8 +65,9 @@
       }
       &-main {
         padding: 4rem 0 1.5rem 0;
+        height: calc(100vh - 10.8rem);
+        overflow-y: auto;
         &__messages {
-          height: 100%;
           padding: 3rem 0;
           display: flex;
           flex-direction: column;
@@ -109,39 +115,75 @@
       }
     }
   }
-  .profile-avatar {
+}
+.profile-avatar {
+  position: relative;
+  &__img {
     position: relative;
-    &__img {
-      position: relative;
-      width: auto;
-      &:hover {
-        .photo-text {
-          opacity: 1;
-        }
+    top: -13.0rem;
+    left: -6.5rem;
+    &.card-position {
+      top: 0;
+      left: 0;
+    }
+    &.header-position {
+      display: block;
+      top: 0;
+      left: 0;
+      width: 3.4rem;
+      height: 3.4rem;
+    }
+    .avatar {
+      background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMzAiIGhlaWdodD0iMTMwIiBmaWxsPSJub25lIj48cGF0aCBmaWxsPSIjRUZFRkVGIiBkPSJNMTMwIDY1YzAgMzUuODk5LTI5LjEwMSA2NS02NSA2NS0zNS44OTggMC02NS0yOS4xMDEtNjUtNjVDMCAyOS4xMDIgMjkuMTAyIDAgNjUgMGMzNS44OTkgMCA2NSAyOS4xMDIgNjUgNjVaIi8+PHBhdGggZmlsbD0iI0NEQ0RDRCIgZD0iTTU1LjkxIDU5LjU0NWEzLjYzNiAzLjYzNiAwIDEgMC0uMDAxLTcuMjcyIDMuNjM2IDMuNjM2IDAgMCAwIDAgNy4yNzJaIi8+PHBhdGggZmlsbD0iI0NEQ0RDRCIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNDkgNDVhNCA0IDAgMCAwLTQgNHYzMmE0IDQgMCAwIDAgNCA0aDMyYTQgNCAwIDAgMCA0LTRWNDlhNCA0IDAgMCAwLTQtNEg0OVptMzIgMkg0OWEyIDIgMCAwIDAtMiAydjIxLjI2N2wxMi42NTUtMi45NTNBMTEuOTk5IDExLjk5OSAwIDAgMSA2Mi4zOCA2N2g1LjIzOGMuOTE4IDAgMS44MzIuMTA1IDIuNzI2LjMxNEw4MyA3MC4yNjdWNDlhMiAyIDAgMCAwLTItMloiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==);
+      background-size: cover;
+      width: 13rem;
+      height: 13rem;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      &.avatar-header {
+        width: 3.4rem;
+        height: 3.4rem;
       }
-      .photo-text {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 13rem;
-        height: 13rem;
-        border-radius: 50%;
-        transition: 0.2s;
-        opacity: 0;
-        background-color: rgba(0, 0, 0, 0.6);
-        span {
-          text-align: center;
-          width: 7rem;
-        }
+      &.avatar-card {
+        width: 4.5rem;
+        height: 4.5rem;
       }
     }
 
-    .text-dark {
-      margin-top: 2rem;
+    input {
+      cursor: pointer;
+      display: none;
+    }
+    &:hover {
+      .photo-text {
+        opacity: 1;
+      }
+    }
+    .photo-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 13rem;
+      height: 13rem;
+      border-radius: 50%;
+      transition: 0.2s;
+      opacity: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      span {
+        text-align: center;
+        width: 7rem;
+      }
     }
   }
+
+  .text-dark {
+    margin-top: 2rem;
+  }
 }
+

@@ -1,4 +1,5 @@
 const template = `
+{{#if footerShow}}
     <button>
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M7.18662 13.5L14.7628 5.92389L15.7056 6.8667L8.12943 
@@ -21,7 +22,8 @@ const template = `
       </svg>
     </button>
     {{{inputMsg}}}
-    {{{buttonSend}}}     
+    {{{buttonSend}}} 
+ {{/if}}    
 `;
 
 export default template;

@@ -3,6 +3,8 @@ const errorMessage: Record<string, string> = {
   login: 'Поле длинной от 3 до 20 символов,содержит латиницу или цифры, но не состоит из них, без пробелов, без спецсимволов(допустимы дефис и нижнее подчёркивание).',
   email: 'Поле содержит латиницу, может включать цифры и спецсимволы вроде дефиса и подчёркивания, обязательно должна быть «собака» (@) и точка после неё, но перед точкой обязательно должны быть буквы.',
   password: 'Поле длинной от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.',
+  oldPassword: 'Поле длинной от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.',
+  newPassword: 'Поле длинной от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.',
   phone: 'Поле длинной от 10 до 15 символов, состоит из цифр, может начинается с плюса.',
   first_name: 'Поле содержит латиницу или кириллицу, первая буква - заглавная, без пробелов и без цифр, нет спецсимволов допустим только дефис.',
   second_name: 'Поле содержит латиницу или кириллицу, первая буква - заглавная, без пробелов и без цифр, нет спецсимволов допустим только дефис.',
@@ -16,7 +18,7 @@ export const validation = (name: string, value: string) => {
   if (name === 'email') {
     return value.match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g);
   }
-  if (name === 'password') {
+  if (name === 'password' || name === 'oldPassword' || name ==='newPassword') {
     return value.match(/^(?=\w*[A-Z])(?=\w*\d)\w{8,40}$/);
   }
   if (name === 'phone') {
@@ -37,7 +39,7 @@ export const formValidation = (event: Event) => {
   event.preventDefault();
   event.stopPropagation();
   // @ts-ignore
-  const eventTarget = event.target.form as Element;
+    const eventTarget = event.target.form as Element;
   const inputs = eventTarget.querySelectorAll('input');
   const formValue: Record<string, string> = {};
   let isError: boolean = false;

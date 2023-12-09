@@ -1,4 +1,6 @@
 /* eslint-disable */
+
+export const API_URL = 'https://ya-praktikum.tech/api/v2';
 enum METHODS {
     GET = 'GET',
     POST = 'POST',
@@ -19,7 +21,7 @@ type RequestOptions = {
 } & MethodOptions
 
 type MethodOptions = {
-    data?: RequestPayload
+    data?: any
     headers?: RequestHeaders
     timeout?: number
 }
@@ -85,6 +87,7 @@ export default class HTTPTransport {
       if (checkMethod || !data) {
         xhr.send();
       } else if (data instanceof FormData) {
+        console.log('form data', data)
         xhr.send(data);
       } else {
         xhr.setRequestHeader('Content-Type', 'application/json');
