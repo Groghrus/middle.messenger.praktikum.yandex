@@ -23,6 +23,7 @@ export class Route {
     render() {
         if (!this.block) {
             this.block = this.blockClass;
+            // @ts-ignore
             renderDOM(this.query, this.block);
             return;
         }

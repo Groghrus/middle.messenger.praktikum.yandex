@@ -4,7 +4,8 @@ const template = `
     placeholder="{{inputPlHolder}}" 
     type="{{inputType}}" 
     name="{{inputName}}"
+    value="{{inputValue}}"
   >
   <label class="label">{{inputLabel}}</label>
-`
-export default template
+`;
+export default template;

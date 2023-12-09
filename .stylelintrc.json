@@ -1,18 +1,11 @@
 {
-<<<<<<< HEAD
-  "extends": "stylelint-config-standard",
-=======
   "customSyntax": "",
->>>>>>> origin/sprint_3
   "rules": {
     "color-hex-case": "lower"
   },
   "ignoreFiles": [
-<<<<<<< HEAD
-=======
     "dist/*",
     "node_modules/*",
->>>>>>> origin/sprint_3
     "build/*"
   ]
 }

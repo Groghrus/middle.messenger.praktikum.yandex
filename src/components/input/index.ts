@@ -1,9 +1,22 @@
-import template from './input.tmpl.ts'
+import template from './input.tmpl.ts';
 import Block from '../../lib/Block.ts';
-
-
+interface IInputProps {
+  inputLabel?: string;
+  inputName: string;
+  inputType: string;
+  inputPlHolder?: string;
+  inputValue?: string | number;
+  events?: object;
+  attr?: {
+    class: string;
+  };
+}
 export default class Input extends Block {
-    render() {
-        return this.compile(template, this._props)
-    }
+  constructor(tagName: string, _props: IInputProps) {
+    super(tagName, _props);
+  }
+
+  render() {
+    return this.compile(template, this._props);
+  }
 }

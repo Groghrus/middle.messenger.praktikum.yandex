@@ -1,41 +1,27 @@
 {
   "compilerOptions": {
-    // "outDir": "dist",
-    "target": "ESNext",
+    "outDir": "dist",
+    "target": "es2020",
     "declaration": false,
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "lib": ["DOM", "ESNext"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "ESNext"],
     "skipLibCheck": true,
-
-    // "esModuleInterop": true,
-    /* Bundler mode */
+    "esModuleInterop": true,
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
 
-    /* Linting */
     "strict": true,
     "noFallthroughCasesInSwitch": true,
 
-    /*yp config*/
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "paths": {
-      "utils/*": ["src/utils/*"],
-      "components/*": ["src/components/*"],
-      "pages/*": ["src/pages/*"],
-      "layout/*": ["src/layout/*"],
-      "assets/*": ["src/assets/*"],
-      "lib/*": ["src/lib/*"],
-      "typings/*": ["src/typings/*"],
-    }
+    "sourceMap": true
   },
   "ts-node": {
     "esm": true
