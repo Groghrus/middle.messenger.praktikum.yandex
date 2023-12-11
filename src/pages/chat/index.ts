@@ -371,7 +371,7 @@ class ChatPage extends Block {
   componentDidUpdate() {
         this._children.chatList = [];
         this._children.messagesListAll = [];
-        this._children.chatList = this._props.chats.map((chat: IChat) => {
+        this._children.chatList = this._props.chats?.map((chat: IChat) => {
             return new Card(
                 'div',
                 {

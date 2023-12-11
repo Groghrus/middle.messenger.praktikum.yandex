@@ -1,6 +1,6 @@
 import './assets/main.scss';
 import router, { Routes } from './lib/Router.ts';
-import { authPage, signInPage, chatPage, profilePage, profileEdit, profilePwdEdit} from './pages';
+import {authPage, signInPage, chatPage, profilePage, profileEdit, profilePwdEdit, error404, error500} from './pages';
 import AuthController from './controllers/AuthController.ts';
 
 window.addEventListener('DOMContentLoaded',  async () => {
@@ -12,6 +12,8 @@ window.addEventListener('DOMContentLoaded',  async () => {
         router.use(Routes.Profile, profilePage);
         router.use(Routes.ProfileEdit, profileEdit)
         router.use(Routes.ProfilePwdEdit, profilePwdEdit)
+        router.use(Routes.Err404, error404)
+        router.use(Routes.Err500, error500)
     }
 
     let isProtectedRoute = true;
@@ -22,17 +24,16 @@ window.addEventListener('DOMContentLoaded',  async () => {
             break;
     }
     try {
-        console.log('index ')
         await AuthController.fetchUser()
         router.start();
-        if (!isProtectedRoute) {
+        if (isProtectedRoute) {
             router.go(Routes.Chat);
         }
     } catch (e) {
         console.error(e);
         router.start();
 
-        if (isProtectedRoute) {
+        if (!isProtectedRoute) {
             router.go(Routes.Auth);
         }
     }

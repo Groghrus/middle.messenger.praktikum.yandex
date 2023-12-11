@@ -168,7 +168,7 @@ export default class Block<Props extends Record<string, any> = any> {
             : [child];
         propsAndStubs[key] = "";
         componentsArray.forEach((child) => {
-            propsAndStubs[key] += `<div data-id="${child._id}"></div>`;
+            propsAndStubs[key] += `<div data-id="${child?._id}"></div>`;
         });
 
         // propsAndStubs[key] = `<div data-id ="${child._id}"></div>`;
@@ -188,12 +188,12 @@ export default class Block<Props extends Record<string, any> = any> {
           : [child];
 
       componentsArray.forEach((child, _) => {
-          const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
+          const stub = fragment.content.querySelector(`[data-id="${child?._id}"]`);
 
           if (!stub) return;
 
-          child.getContent()?.append(...Array.from(stub.childNodes));
-          stub.replaceWith(child.getContent()!);
+          child?.getContent()?.append(...Array.from(stub.childNodes));
+          stub.replaceWith(child?.getContent()!);
       });
   });
     Object.entries(this._lists).forEach(([key, child]) => {
