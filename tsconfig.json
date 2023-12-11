@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["vite/client"],
     "outDir": "dist",
     "target": "es2020",
     "declaration": false,

@@ -84,8 +84,11 @@ export const isEmpty = (value: unknown): boolean =>{
 }
 
 export const getDateToTime = (date: string | undefined) => {
+    // @ts-ignore
     date = date ? new Date(date) : new Date();
+    // @ts-ignore
     const minute: string = date.getMinutes().toString();
+    // @ts-ignore
     const hours: string = date.getHours().toString();
 
     return `${hours.padStart(2, '0')}:${minute.padStart(2, '0')}`;
