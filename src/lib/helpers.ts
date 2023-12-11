@@ -83,8 +83,7 @@ export const isEmpty = (value: unknown): boolean =>{
     return empty;
 }
 
-export const getDateToTime = (date: string | undefined | Date) => {
-
+export const getDateToTime = (date: string | undefined) => {
     date = date ? new Date(date) : new Date();
     const minute: string = date.getMinutes().toString();
     const hours: string = date.getHours().toString();

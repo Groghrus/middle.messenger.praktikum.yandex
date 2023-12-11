@@ -5,12 +5,7 @@ import store from '../lib/Store.ts';
 import {
   MessagesController,
 } from './MessagesController.ts';
-import {
-  IUser,
-} from '../api/auth-api.ts';
-export interface IChatMember extends Omit<IUser, 'phone' | 'email'> {
-    role?: string;
-}
+
 class ChatController {
   private api = new ChatApi();
   async getChatList() {

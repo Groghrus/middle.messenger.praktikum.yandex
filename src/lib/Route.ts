@@ -23,7 +23,7 @@ export class Route {
     render() {
         if (!this.block) {
             this.block = this.blockClass;
-            renderDOM(this.query, <Block<any>>this.block);
+            renderDOM(this.query, this.block);
             return;
         }
     }
