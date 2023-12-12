@@ -74,14 +74,12 @@ class ProfilePage extends Block {
                       class: 'photo-text'
                   },
                   events: {
-                      change: (e) => {
+                      change: (e: any) => {
                           const fileInput = e.target;
-                          // @ts-ignore
-                          if (!fileInput.files) {
+                          if (!fileInput?.files) {
                               return;
                           }
-                          // @ts-ignore
-                          const avatar = fileInput.files[0];
+                          const avatar = fileInput?.files[0];
                           const formData = new FormData();
                           formData.append('avatar', avatar);
                           ProfileController.changeAvatar(formData);

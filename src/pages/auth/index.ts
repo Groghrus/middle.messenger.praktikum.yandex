@@ -24,16 +24,15 @@ export default class AuthPage extends Block {
           },
           events: {
             click: (e: any) => {
-                console.log(e)
               if(formValidation(e)) {
                  const values = Object
                     .values(this._element)
                     .filter((child: any) => child.tagName === "INPUT")
                     .map((child) => ([(child as HTMLInputElement).name, (child as HTMLInputElement).value]))
-                  console.log(values)
+                 console.log(values);
                  const data = Object.fromEntries(values);
-                 console.log(data)
-                  AuthController.signIn(data)
+                 console.log(data);
+                 AuthController.signIn(data);
                 }
             },
           },
