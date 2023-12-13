@@ -11,6 +11,7 @@ export const renderDOM = (query: string, block: Block | null) => {
 
     root.append(block?.getContent()!);
 
+    // @ts-ignore
     block.dispatchComponentDidMount()
 
     return root;

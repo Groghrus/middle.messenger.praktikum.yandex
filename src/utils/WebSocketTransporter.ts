@@ -29,7 +29,7 @@ export class WebSocketTransporter extends EventBus {
     });
   }
   private setPing() {
-    // @ts-expect-error this.interval
+    // @ts-ignore
     this.interval = setInterval(() => {
       this.send({ type: 'ping' });
     }, 5000);
