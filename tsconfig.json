@@ -21,7 +21,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "useUnknownInCatchVariables": false
   },
   "ts-node": {
     "esm": true

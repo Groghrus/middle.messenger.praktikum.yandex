@@ -5,6 +5,7 @@ interface IInputProps {
   inputName: string;
   inputType: string;
   inputPlHolder?: string;
+  inputValue?: string | number;
   events?: object;
   attr?: {
     class: string;
@@ -14,6 +15,7 @@ export default class Input extends Block {
   constructor(tagName: string, _props: IInputProps) {
     super(tagName, _props);
   }
+
   render() {
     return this.compile(template, this._props);
   }

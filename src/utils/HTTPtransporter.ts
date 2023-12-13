@@ -1,4 +1,6 @@
 /* eslint-disable */
+
+export const API_URL = 'https://ya-praktikum.tech/api/v2';
 enum METHODS {
     GET = 'GET',
     POST = 'POST',
@@ -19,7 +21,7 @@ type RequestOptions = {
 } & MethodOptions
 
 type MethodOptions = {
-    data?: RequestPayload
+    data?: any
     headers?: RequestHeaders
     timeout?: number
 }
@@ -35,18 +37,23 @@ function queryStringify(data: RequestPayload) {
   );
 }
 
-class HTTPTransport {
-  public get: HTTPMethod = (url: string, options) => this.request(url, { ...options, method: METHODS.GET }, options && options.timeout);
+export default class HTTPTransport {
+  static API_URL = 'https://ya-praktikum.tech/api/v2';
+  protected endpoint: string;
 
-  public post: HTTPMethod = (url: string, options) => this.request(url, { ...options, method: METHODS.POST }, options && options.timeout);
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  }
+  public get: HTTPMethod = (url: string, options) => this.request(this.endpoint + url, { ...options, method: METHODS.GET }, options && options.timeout);
 
-  public put: HTTPMethod = (url: string, options) => this.request(url, { ...options, method: METHODS.PUT }, options && options.timeout);
+  public post: HTTPMethod = (url: string, options) => this.request(this.endpoint + url, { ...options, method: METHODS.POST }, options && options.timeout);
 
-  public delete: HTTPMethod = (url: string, options) => this.request(url, { ...options, method: METHODS.DELETE }, options && options.timeout);
+  public put: HTTPMethod = (url: string, options) => this.request(this.endpoint + url, { ...options, method: METHODS.PUT }, options && options.timeout);
 
-  private request(url: string, options: RequestOptions, timeout = 5000) {
+  public delete: HTTPMethod = (url: string, options) => this.request(this.endpoint + url, { ...options, method: METHODS.DELETE }, options && options.timeout);
+
+  private request<Response>(url: string, options: RequestOptions, timeout = 5000): Promise<Response> {
     const { headers = {}, method, data = {} } = options;
-
     return new Promise((resolve, reject) => {
       if (!method) {
         reject('No method');
@@ -65,18 +72,26 @@ class HTTPTransport {
         xhr.setRequestHeader(key, headers[key]);
       });
 
-      xhr.onload = function () {
-        resolve(xhr);
+      xhr.onload = () => {
+        resolve(xhr.response);
       };
-      xhr.onabort = reject;
-      xhr.onerror = reject;
+      xhr.onabort = () => reject(new Error('Abort'));
+      xhr.onerror = () => reject(new Error('Network Error'));
       xhr.timeout = timeout;
-      xhr.ontimeout = reject;
+      xhr.ontimeout = () => reject(new Error('Timeout'));
+
+
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
 
       if (checkMethod || !data) {
         xhr.send();
+      } else if (data instanceof FormData) {
+        console.log('form data', data)
+        xhr.send(data);
       } else {
-        xhr.send(data as any);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(data));
       }
     });
   }

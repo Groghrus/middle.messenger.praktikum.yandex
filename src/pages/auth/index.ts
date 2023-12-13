@@ -4,6 +4,8 @@ import Block from '../../lib/Block.ts';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import {formValidation, inputValidation} from '../../utils/validation.ts';
+import router from '../../lib/Router.ts';
+import AuthController from "../../controllers/AuthController.ts";
 
 export default class AuthPage extends Block {
   render() {
@@ -11,7 +13,6 @@ export default class AuthPage extends Block {
       text: 'Вход',
     });
   }
-
   constructor() {
     super('form', {
       buttons: [
@@ -22,7 +23,18 @@ export default class AuthPage extends Block {
             class: 'btn-wrapper',
           },
           events: {
-            click: formValidation,
+            click: (e: any) => {
+              if(formValidation(e)) {
+                 const values = Object
+                    .values(this._element)
+                    .filter((child: any) => child.tagName === "INPUT")
+                    .map((child) => ([(child as HTMLInputElement).name, (child as HTMLInputElement).value]))
+                 console.log(values);
+                 const data = Object.fromEntries(values);
+                 console.log(data);
+                 AuthController.signIn(data);
+                }
+            },
           },
         }),
         new Button('div', {
@@ -33,10 +45,8 @@ export default class AuthPage extends Block {
             class: 'btn-wrapper',
           },
           events: {
-            click: (e: any) => {
-              window.location.pathname = '/signin';
-              e.preventDefault();
-              e.stopPropagation();
+            click: () => {
+              router.go('/sign-up')
             },
           },
         }),
@@ -46,6 +56,7 @@ export default class AuthPage extends Block {
           inputLabel: 'Логин',
           inputName: 'login',
           inputType: 'text',
+          inputValue: '',
           inputPlHolder: '',
           events: {
             blur: inputValidation
@@ -58,6 +69,7 @@ export default class AuthPage extends Block {
           inputLabel: 'Пароль',
           inputName: 'password',
           inputType: 'password',
+          inputValue: '',
           inputPlHolder: '',
           events: {
             blur: inputValidation
@@ -67,82 +79,13 @@ export default class AuthPage extends Block {
           },
         }),
       ],
-      modalsBtn: [
-        new Button(
-            'div', {
-              title: 'Зайти в чат',
-              type: '',
-              className: '',
-              events: {
-                click: (e: any) => {
-                  window.location.pathname = '/chat';
-                  e.preventDefault();
-                  e.stopPropagation();
-                },
-              },
-              attr: {
-                class: 'btn-wrapper d-flex justify-c',
-              },
-            },
-        ),
-        new Button(
-          'div', {
-            title: 'Модальные окна',
-            type: '',
-            className: '',
-            events: {
-              click: (e: any) => {
-                window.location.pathname = '/modals';
-                e.preventDefault();
-                e.stopPropagation();
-              },
-            },
-            attr: {
-              class: 'btn-wrapper d-flex justify-c',
-            },
-          },
-        ),
-        new Button(
-          'div',
-          {
-            title: 'Error 404',
-            type: '',
-            className: '',
-            events: {
-              click: (e: any) => {
-                window.location.pathname = '/err404';
-                e.preventDefault();
-                e.stopPropagation();
-              },
-            },
-            attr: {
-              class: 'btn-wrapper d-flex justify-c',
-            },
-          },
-        ),
-        new Button(
-          'div',
-          {
-            title: 'Error 500',
-            type: '',
-            className: '',
-            events: {
-              click: (e: any) => {
-                window.location.pathname = '/err500';
-                e.preventDefault();
-                e.stopPropagation();
-              },
-            },
-            attr: {
-              class: 'btn-wrapper d-flex justify-c',
-            },
-          },
-        ),
-      ],
       attr: {
         id: 'auth-form',
         class: 'form-wrapper d-flex direction-col align-c justify-sb',
       },
     });
+  }
+  init() {
+      console.log('auth', this)
   }
 }

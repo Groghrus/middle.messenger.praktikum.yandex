@@ -3,6 +3,8 @@ import template from './avatarProfile.tmpl.ts';
 interface IAvatarProfileProps {
   text?: string;
   exit?: boolean;
+  src?: string;
+  inputAvatar?: object;
   attr?: {
     class: string;
   };

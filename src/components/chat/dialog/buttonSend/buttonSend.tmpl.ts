@@ -1,9 +1,8 @@
 const template = `
-<div class="btn-send ">
-  <button class="arrow">
-    <div></div>
-  </button>
-</div> 
+<button class="btn-send">  
+  <div class="arrow">
+  </div>
+</button> 
 `;
 
 export default template;

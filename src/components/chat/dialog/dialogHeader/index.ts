@@ -1,7 +1,9 @@
 import Block from '../../../../lib/Block.ts';
 import template from './dialogHeader.tmpl.ts';
 interface IDialogHeaderProps {
-  userName: string;
+  userName?: string;
+  headerShow?: boolean;
+  buttonMenu?: Block;
   attr?: {
     class: string;
   };
