@@ -11,7 +11,7 @@ export interface State {
     chats?: IChat[];
     messages?: Record<number, IMsgData[]>;
     currentMessages?: IMsgData[];
-    selectChat?: IChat[] | [];
+    selectChat?: any;
     currentChatID?: number;
 
 }

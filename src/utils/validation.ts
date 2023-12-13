@@ -38,8 +38,8 @@ export const validation = (name: string, value: string) => {
 export const formValidation = (event: Event) => {
   event.preventDefault();
   event.stopPropagation();
-  // @ts-ignore
-    const eventTarget = event.target.form as Element;
+
+  const eventTarget = event.target as Element;
   const inputs = eventTarget.querySelectorAll('input');
   const formValue: Record<string, string> = {};
   let isError: boolean = false;

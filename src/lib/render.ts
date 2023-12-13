@@ -1,6 +1,6 @@
 import Block from './Block.ts';
 
-export const renderDOM = (query: string, block: Block) => {
+export const renderDOM = (query: string, block: Block | null) => {
     const root = document.querySelector(query);
 
     if (root === null) {

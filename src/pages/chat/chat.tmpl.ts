@@ -25,6 +25,7 @@ const template = `
   </div>
   {{{ modalCreateChat }}}  
   {{{ modalAddUser }}}  
+  {{{ modalDelUser }}}  
   {{{ modalAddAvatarToChat }}}  
   </div>  
 `;

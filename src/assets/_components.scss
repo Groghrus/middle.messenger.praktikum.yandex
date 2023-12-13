@@ -19,6 +19,11 @@
     }
   }
 }
+.btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
 .btn-send {
   background-color: $blue-color;
   height: 2.8rem;
@@ -28,9 +33,6 @@
   cursor: pointer;
   .arrow {
     position: relative;
-    //width: 2.8rem;
-    //height: 2.8rem;
-    //
     width: 15px;
     height: 2px;
     background-color: $white-color;
@@ -230,6 +232,7 @@
   height: 100%;
 }
 .modal {
+  position: relative;
   width: 34rem;
   height: 27rem;
   background: $white-color;

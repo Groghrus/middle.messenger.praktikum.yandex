@@ -10,10 +10,10 @@ class ChatController {
   private api = new ChatApi();
   async getChatList() {
     try {
-      const chats: any = await this.api.getChats({ limit: 25 });
-
+      const chats = await this.api.getChats({ limit: 25 });
+      // @ts-expect-error no error
       chats.map(async (chat: IChat) => {
-        // @ts-ignore
+        // @ts-expect-error no error
         const { token } = await this.api.getToken(chat.id);
         await MessagesController.connect(chat.id, token);
       });
@@ -46,12 +46,12 @@ class ChatController {
       console.log(e);
     }
   }
+  // eslint-disable-next-line class-methods-use-this
   get currentChat() {
-    // @ts-ignore
     return store.getState()?.selectChat.reduce((obj: IChat) => ({ ...obj }));
   }
   selectChat(chatId: number) {
-    const target = store.getState().chats?.find((chat: any) => chat.id === chatId);
+    const target = store.getState().chats?.find((chat) => chat.id === chatId);
     console.log('selectChat', target);
     store.set('selectChat', [target]);
     store.set('currentChatID', chatId);
@@ -59,8 +59,9 @@ class ChatController {
   }
   async fetchChatUsers(chatId: number) {
     try {
-      const chatMembers: any = await this.api.getChatUser(chatId);
-      const nonAdminMembers = chatMembers.filter((user: any) => user.role !== 'admin');
+      const chatMembers = await this.api.getChatUser(chatId);
+      // @ts-expect-error no error
+      const nonAdminMembers = chatMembers.filter((user) => user.role !== 'admin');
       store.set('selectChat', [
         {
           ...store.getState().selectChat?.[0],
@@ -83,11 +84,11 @@ class ChatController {
   async editChatAvatar(data: FormData) {
     try {
       const response = await this.api.uploadChatAvatar(data);
-      // @ts-ignore
+      // @ts-expect-error no error
       const { avatar, id } = response;
 
       const { chats, selectChat } = store.getState();
-      const updatedChats = chats?.map((chat: any) => (chat.id !== id
+      const updatedChats = chats?.map((chat) => (chat.id !== id
         ? chat
         : {
           ...chat,

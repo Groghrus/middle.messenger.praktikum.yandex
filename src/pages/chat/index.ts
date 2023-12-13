@@ -27,12 +27,13 @@ import InputFile from '../../components/profile/avatar/input';
 import { getDateToTime} from '../../lib/helpers.ts';
 import {MessagesController} from '../../controllers/MessagesController.ts';
 import Plug from '../../components/chat/plag';
+import ButtonClose from '../../components/buttonClose';
 
 class ChatPage extends Block {
 
   constructor() {
     super(
-      'div',
+      'main',
       {
         panel: new Panel(
           'div',
@@ -121,6 +122,18 @@ class ChatPage extends Block {
                   }
               },
           ),
+          closeBtn: new ButtonClose('button', {
+            events: {
+              click: (e: Event) => {
+                console.log(e)
+                const modal = this._children.modalCreateChat as Block
+                modal.hide()
+              }
+            },
+            attr: {
+              class: 'btn-close',
+            },
+          }),
           attr: {
               class: 'overlay',
           },
@@ -159,6 +172,17 @@ class ChatPage extends Block {
                   }
               },
           ),
+          closeBtn: new ButtonClose('button', {
+            events: {
+              click: () => {
+                const modal = this._children.modalAddUser as Block
+                modal.hide()
+              }
+            },
+            attr: {
+              class: 'btn-close',
+            },
+          }),
           attr: {
               class: 'overlay',
           },
@@ -186,7 +210,7 @@ class ChatPage extends Block {
                   },
                   events: {
                       click: () => {
-                          const modal = this._children.modalAddUser as Block
+                          const modal = this._children.modalDelUser as Block
                           let value = (modal._children.inputs as Input)._element.firstElementChild.value
                           const userId = Number(value)
                           const chatId = ChatController.currentChat?.id
@@ -196,6 +220,18 @@ class ChatPage extends Block {
                   }
               },
           ),
+          closeBtn: new ButtonClose('button', {
+            events: {
+              click: (e: Event) => {
+                console.log(e)
+                const modal = this._children.modalDelUser as Block
+                modal.hide()
+              }
+            },
+            attr: {
+              class: 'btn-close',
+            },
+          }),
           attr: {
               class: 'overlay',
           },
@@ -213,13 +249,11 @@ class ChatPage extends Block {
                   class: 'popup-file'
               },
               events: {
-                  change: (e) => {
+                  change: (e: any) => {
                       const fileInput = e.target;
-                      // @ts-ignore
                       if (!fileInput.files) {
-                               return;
-                           }
-                           // @ts-ignore
+                         return;
+                      }
                       const avatar = fileInput.files[0];
                       console.log(avatar)
                       const formData = new FormData();
@@ -257,6 +291,18 @@ class ChatPage extends Block {
                   }
               },
           ),
+          closeBtn: new ButtonClose('button', {
+            events: {
+              click: (e: Event) => {
+                console.log(e)
+                const modal = this._children.modalAddAvatarToChat as Block
+                modal.hide()
+              }
+            },
+            attr: {
+              class: 'btn-close',
+            },
+          }),
           attr: {
               class: 'overlay',
           },
@@ -268,6 +314,8 @@ class ChatPage extends Block {
                   events: {
                       click: ()=> {
                           const modal = this._children.modalAddAvatarToChat as Block
+                          const popup = this._children.popUpMenu as Block
+                          popup.hide()
                           modal.show()
                       }
                   }
@@ -277,6 +325,8 @@ class ChatPage extends Block {
                   events: {
                       click: ()=> {
                           const modal = this._children.modalAddUser as Block
+                          const popup = this._children.popUpMenu as Block
+                          popup.hide()
                           modal.show()
                       }
                   }
@@ -287,6 +337,8 @@ class ChatPage extends Block {
                       click: (e)=> {
                           console.log(e)
                           const modal = this._children.modalDelUser as Block
+                          const popup = this._children.popUpMenu as Block
+                          popup.hide()
                           modal.show()
                       }
                   }
@@ -356,7 +408,7 @@ class ChatPage extends Block {
               ),
               attr: {
                   id: 'msg-form',
-                  class: 'dialog-footer',
+                  class: 'dialog-footer'
               },
           },
       );
@@ -369,7 +421,6 @@ class ChatPage extends Block {
   }
 
   componentDidUpdate() {
-        this._children.chatList = [];
         this._children.messagesListAll = [];
         this._children.chatList = this._props.chats?.map((chat: IChat) => {
             return new Card(
@@ -428,16 +479,17 @@ class ChatPage extends Block {
             buttonSend: new ButtonSend('div', {
                 events: {
                     click: (e: any) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
                         if (formValidation(e)) {
                             const parent = this._children.dialogFooter as Block
                             const chatId = ChatController.currentChat?.id
-                            let valueMsg: string = (parent._children.inputMsg as Input)._element.firstElementChild
-                            // @ts-ignore
+                            let valueMsg = (parent._children.inputMsg as Input)._element.firstElementChild
                             MessagesController.sendMessage(chatId, valueMsg.value)
-                            // @ts-ignore
-                            valueMsg['value'] = '';
+                            valueMsg.value = '';
                         }
-                    },
+                    }
                 },
                 attr: {
                     class: 'd-flex justify-c',

@@ -8,7 +8,7 @@ interface IInputFProps {
   inputPlHolder?: string;
   inputValue?: string;
   events?: {
-      change?: (e: Event) => void
+      change?: (e: never) => void
   };
   attr?: {
     class: string;

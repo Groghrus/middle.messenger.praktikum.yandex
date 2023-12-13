@@ -10,6 +10,7 @@ interface IModalProps {
   events?: object;
   button?: object;
   inputs?: object;
+  closeBtn?: object;
   attr?: {
     class: string;
   };

@@ -1,5 +1,6 @@
 import EventBus from '../lib/EventBus.ts';
 
+// eslint-disable-next-line no-shadow
 export enum WebSocketEvents {
     Connect = 'connected',
     Open = 'open',
@@ -28,7 +29,7 @@ export class WebSocketTransporter extends EventBus {
     });
   }
   private setPing() {
-    // @ts-ignore
+    // @ts-expect-error this.interval
     this.interval = setInterval(() => {
       this.send({ type: 'ping' });
     }, 5000);
