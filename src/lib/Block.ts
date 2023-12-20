@@ -215,16 +215,12 @@ export default class Block<Props extends Record<string, any> = any> {
 
   _componentDidMount() {
     this.componentDidMount();
-    // Object.values(this._children).forEach((child) => { child?.dispatchComponentDidMount(); });
   }
 
   componentDidMount() {}
 
   dispatchComponentDidMount() {
     this._eventBus.emit(Block.EVENTS.FLOW_CDM);
-    // if (Object.keys(this._children).length) {
-    //   this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
-    // }
   }
 
   _componentDidUpdate(oldProps: any, newProps: any): void {
