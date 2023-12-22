@@ -6,30 +6,50 @@
     "node": "12.20.0"
   },
   "scripts": {
+    "prepare": "husky install",
     "dev": "vite",
     "start": "tsc && vite build && vite --port 3000 --host",
     "prebuild": "tsc --noEmit",
     "build": "npm run prebuild && vite build",
     "preview": "vite preview",
     "lintts": "eslint . --fix --ext .ts",
-    "lintstyle": "run-s lint:scss"
+    "lintstyle": "run-s lint:scss",
+    "test": "mocha --parallel --require ts-node/register --require .mochaSetup.cjs './src/**/*.test.ts'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lintts && npm run lintstyle && npm run test"
+    }
   },
   "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "@types/jsdom": "^21.1.6",
+    "@types/mocha": "^10.0.6",
+    "@types/sinon": "^17.0.2",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.9.1",
-    "stylelint-config-standard-scss": "^11.0.0",
     "@typescript-eslint/parser": "^6.9.1",
+    "chai": "^4.3.10",
     "eslint": "^8.53.0",
     "eslint-config-airbnb": "^19.0.4",
+    "husky": "^8.0.3",
+    "jsdom": "^23.0.1",
+    "mocha": "^10.2.0",
     "sass": "^1.69.4",
     "stylelint": "^15.11.0",
+    "stylelint-config-standard-scss": "^11.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "vite": "^4.4.5"
   },
   "dependencies": {
+    "esm-loader-typescript": "^1.0.6",
+    "esmock": "^2.6.0",
+    "got": "^11.8.6",
+    "node-esm-loader": "^0.3.0",
     "path": "^0.12.7",
-    "vite-plugin-handlebars": "^1.6.0",
-    "@types/uuid": "^9.0.7",
-    "uuid": "^9.0.1"
+    "sinon": "^17.0.1",
+    "uuid": "^9.0.1",
+    "vite-plugin-handlebars": "^1.6.0"
   }
 }

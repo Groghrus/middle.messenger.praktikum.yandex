@@ -13,10 +13,10 @@ export enum Routes {
     Modals = '/modals'
 }
 
-class Router {
+export class Router {
     _history: History = window.history;
     _routes: Route[] = [];
-    static _instance: Router;
+    private static _instance: Router | null = null;
     _currentRoute: Route | null = null;
 
     constructor(readonly rootQuery: string) {
@@ -27,7 +27,11 @@ class Router {
         Router._instance = this;
     }
 
-    use(pathname: string, block: Block<any> | null) {
+    static destroy() {
+        this._instance = null;
+    }
+
+    public use(pathname: string, block: Block<any> | null) {
         const route = new Route(pathname, block, this.rootQuery);
         this._routes.push(route);
         return this;
@@ -63,6 +67,7 @@ class Router {
     getRoute(pathname: string): Route {
         return <Route>this._routes.find((route) => route.match(pathname));
     }
+
 }
 export default new Router('#app');
 
